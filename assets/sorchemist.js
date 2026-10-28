@@ -51,121 +51,14 @@
   const frameFns = new Set();
   SC.onFrame = (fn) => { frameFns.add(fn); return () => frameFns.delete(fn); };
 
-  /* ---------------- Ses motoru (WebAudio, dosyasız) ---------------- */
-  const Sound = (SC.Sound = {
-    ctx: null, master: null, fx: null, on: false, chimeTimer: null, noiseBuf: null,
-    init() {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return false;
-      const ctx = (this.ctx = new AC());
-      const master = (this.master = ctx.createGain());
-      master.gain.value = 0;
-      const delay = ctx.createDelay(); delay.delayTime.value = .42;
-      const fb = ctx.createGain(); fb.gain.value = .36;
-      const wet = ctx.createGain(); wet.gain.value = .33;
-      delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(master);
-      this.fx = delay;
-      master.connect(ctx.destination);
-      // Gürültü tamponu (rüzgâr, körük, buhar)
-      const buf = (this.noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate));
-      const d = buf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-      // Drone
-      const lp = ctx.createBiquadFilter(); lp.type = "lowpass"; lp.frequency.value = 520; lp.Q.value = .7;
-      const lfo = ctx.createOscillator(); lfo.frequency.value = .05;
-      const lfoGain = ctx.createGain(); lfoGain.gain.value = 260;
-      lfo.connect(lfoGain); lfoGain.connect(lp.frequency); lfo.start();
-      [[55, "sine", .3], [82.41, "triangle", .1], [110.2, "sine", .13], [164.8, "sine", .045]].forEach(([f, type, g]) => {
-        const o = ctx.createOscillator(); o.type = type; o.frequency.value = f; o.detune.value = (Math.random() - .5) * 12;
-        const og = ctx.createGain(); og.gain.value = g; o.connect(og); og.connect(lp); o.start();
-      });
-      lp.connect(master);
-      // Rüzgâr
-      const noise = ctx.createBufferSource(); noise.buffer = buf; noise.loop = true;
-      const bp = ctx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 420; bp.Q.value = .6;
-      const ng = ctx.createGain(); ng.gain.value = .04;
-      const wl = ctx.createOscillator(); wl.frequency.value = .08; const wlg = ctx.createGain(); wlg.gain.value = 220;
-      wl.connect(wlg); wlg.connect(bp.frequency); wl.start();
-      noise.connect(bp); bp.connect(ng); ng.connect(master); noise.start();
-      return true;
-    },
-    ok() { return this.ctx && this.on; },
-    tone(freq, { vol = .05, dur = 2.4, type = "sine", partial = 2.01, wet = true, attack = .02 } = {}) {
-      if (!this.ok()) return;
-      const t = this.ctx.currentTime;
-      const o = this.ctx.createOscillator(); o.type = type; o.frequency.value = freq;
-      const o2 = this.ctx.createOscillator(); o2.type = "sine"; o2.frequency.value = freq * partial;
-      const g = this.ctx.createGain(); g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(vol, t + attack); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
-      const g2 = this.ctx.createGain(); g2.gain.value = .25;
-      o.connect(g); o2.connect(g2); g2.connect(g); g.connect(this.master); if (wet) g.connect(this.fx);
-      o.start(t); o2.start(t); o.stop(t + dur + .05); o2.stop(t + dur + .05);
-    },
-    chime(freq, vol = .05, dur = 2.4) { this.tone(freq, { vol, dur }); },
-    tick() { this.tone(1760 + Math.random() * 400, { vol: .012, dur: .25, wet: false }); },
-    noise({ vol = .2, dur = .5, type = "bandpass", freq = 800, q = 1, sweep = 0 } = {}) {
-      if (!this.ok()) return;
-      const t = this.ctx.currentTime;
-      const src = this.ctx.createBufferSource(); src.buffer = this.noiseBuf;
-      const f = this.ctx.createBiquadFilter(); f.type = type; f.frequency.setValueAtTime(freq, t); f.Q.value = q;
-      if (sweep) f.frequency.exponentialRampToValueAtTime(Math.max(40, freq + sweep), t + dur);
-      const g = this.ctx.createGain(); g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t + .03); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
-      src.connect(f); f.connect(g); g.connect(this.master);
-      src.start(t, Math.random()); src.stop(t + dur + .05);
-    },
-    // Örs çekici: uyumsuz metalik kısmi sesler
-    clang() {
-      if (!this.ok()) return;
-      [1, 2.76, 5.4, 8.93].forEach((p, i) => this.tone(420 * p, { vol: .07 / (i + 1), dur: 1.2 - i * .2, type: "sine", partial: 1.003, attack: .002 }));
-      this.noise({ vol: .12, dur: .08, type: "highpass", freq: 3000 });
-    },
-    whoosh() { this.noise({ vol: .22, dur: .7, type: "bandpass", freq: 300, q: .8, sweep: 900 }); },
-    hiss() { this.noise({ vol: .25, dur: 1.8, type: "highpass", freq: 2500, q: .5 }); },
-    drip() { if (!this.ok()) return; const f = 900 + Math.random() * 500; this.tone(f, { vol: .04, dur: .18, wet: true, partial: 1.5, attack: .001 }); },
-    bubble() { this.tone(300 + Math.random() * 500, { vol: .015, dur: .12, wet: false, partial: 1.6, attack: .001 }); },
-    success() { [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => setTimeout(() => this.chime(f, .04, 2), i * 110)); },
-    fail() { this.tone(196, { vol: .05, dur: .6, type: "triangle", partial: 1.06 }); },
-    scheduleChimes() {
-      const scale = [440, 523.25, 587.33, 659.25, 783.99, 880, 1046.5];
-      const loop = () => { this.chime(scale[(Math.random() * scale.length) | 0], .03, 3.2); this.chimeTimer = setTimeout(loop, 2600 + Math.random() * 4400); };
-      loop();
-    },
-    async set(on) {
-      if (on && !this.ctx && !this.init()) return;
-      if (!this.ctx) return;
-      this.on = on;
-      if (on && this.ctx.state === "suspended") { try { await this.ctx.resume(); } catch (e) {} }
-      const t = this.ctx.currentTime;
-      this.master.gain.cancelScheduledValues(t);
-      this.master.gain.setValueAtTime(this.master.gain.value, t);
-      this.master.gain.linearRampToValueAtTime(on ? .55 : 0, t + 1.4);
-      clearTimeout(this.chimeTimer);
-      if (on) this.scheduleChimes();
-      document.body.classList.toggle("sound-on", on);
-      const btn = $("#sound-btn");
-      if (btn) { btn.setAttribute("aria-pressed", String(on)); btn.setAttribute("aria-label", on ? "Ortam sesini kapat" : "Ortam sesini aç"); }
-      SC.store.set("sc-sound", on ? "1" : "0");
-    }
-  });
-  document.addEventListener("visibilitychange", () => {
-    if (!Sound.ctx) return;
-    if (document.hidden) Sound.ctx.suspend(); else if (Sound.on) Sound.ctx.resume();
-  });
+  /* ---------------- Ses: kapalı ----------------
+     Site tamamen sessizdir. Eski çağrılar bozulmasın diye boş arayüz bırakıldı. */
+  const noop = () => {};
+  const Sound = (SC.Sound = { on: false, ctx: null, init: () => false, set: noop, chime: noop, tick: noop, clang: noop, whoosh: noop, hiss: noop, drip: noop, bubble: noop, success: noop, fail: noop, noise: noop, scheduleChimes: noop });
+  try { SC.store.set("sc-sound", "0"); } catch (e) {}
 
   /* ---------------- Başlatma ---------------- */
   function init() {
-    // Ses düğmesi + önceki tercih (tarayıcı ilk etkileşimi bekler)
-    const sb = $("#sound-btn");
-    if (sb) sb.addEventListener("click", () => Sound.set(!Sound.on));
-    if (SC.store.get("sc-sound") === "1" && !document.body.dataset.gate) {
-      document.body.classList.add("sound-on");
-      const arm = (e) => {
-        if (e.target.closest && e.target.closest("#sound-btn")) return; // düğme zaten kendi işini yapar
-        Sound.set(true);
-        removeEventListener("pointerdown", arm, true); removeEventListener("keydown", arm, true);
-      };
-      addEventListener("pointerdown", arm, true); addEventListener("keydown", arm, true);
-    }
-
     // Özel imleç
     const cursor = $(".cursor"), dot = $(".cursor-dot"), cursorLabel = cursor && cursor.querySelector("span");
     const ring = { x: mouse.x, y: mouse.y };
@@ -177,7 +70,6 @@
       const lbl = t && t.closest("[data-cursor]");
       cursor.classList.toggle("label-on", !!lbl);
       if (lbl) cursorLabel.textContent = lbl.dataset.cursor;
-      if (t && Sound.on && !t.matches(".el, [data-nosound]")) Sound.tick();
     });
     document.addEventListener("pointerleave", () => { if (cursor) { cursor.style.opacity = 0; dot.style.opacity = 0; } });
     document.addEventListener("pointerenter", () => { if (cursor) { cursor.style.opacity = ""; dot.style.opacity = ""; } });
@@ -219,7 +111,6 @@
       menuBtn.setAttribute("aria-expanded", String(open));
       menuBtn.textContent = open ? "Kapat" : "Menü";
       document.documentElement.style.overflow = open ? "hidden" : "";
-      if (open) Sound.chime(659.25, .03, 1.6);
     });
     if (menuBtn) {
       menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
@@ -252,7 +143,6 @@
       if (url.pathname === location.pathname && url.search === location.search) return;
       e.preventDefault();
       document.documentElement.classList.add("page-leaving");
-      Sound.chime(523.25, .025, 1.2);
       setTimeout(() => (location.href = url.href), reduced ? 0 : 420);
     });
     addEventListener("pageshow", (e) => { if (e.persisted) document.documentElement.classList.remove("page-leaving"); });
