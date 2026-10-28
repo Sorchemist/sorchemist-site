@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Lise 1-2-3-4 Tüm Kimya Konuları & Parşömen Kütüphanesi | Sorchemist</title>
+  <meta name="description" content="Sorcerer Aqualf ile 9, 10, 11 ve 12. sınıf kimya müfredatının 29 ünitesi: senaryolar, iksir formülleri, sınav şifreleri, önemli çıkarımlar ve mini quizler.">
+  <link rel="canonical" href="https://www.sorchemist.com/konular.html">
+  <meta name="theme-color" content="#070d0b">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Sorchemist">
+  <meta property="og:title" content="Parşömen Kütüphanesi | Sorchemist">
+  <meta property="og:description" content="Lise 1-2-3-4 kimya müfredatının 29 ünitesi, Sorcerer Aqualf’ın anlatımıyla.">
+  <meta property="og:url" content="https://www.sorchemist.com/konular.html">
+  <meta property="og:image" content="https://www.sorchemist.com/Aqualf1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='none' stroke='%23f6c86a' stroke-width='6'/><path d='M50 14 L84 70 H16 Z' fill='none' stroke='%23f6c86a' stroke-width='6'/><circle cx='50' cy='52' r='9' fill='%23f6c86a'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/sorchemist.css">
+  <style>
+    /* ---------- Sınıf sekmeleri (hero içinde) ---------- */
+    .grade-tabs { position: relative; display: flex; flex-wrap: wrap; gap: 0; margin-top: 34px; border-bottom: 1px solid var(--line); max-width: 760px; }
+    .grade-tab { position: relative; flex: 1 1 0; min-width: 120px; text-align: left; padding: 14px 18px 16px 0; color: var(--ink-3); transition: color .4s; }
+    .grade-tab b { display: block; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(243,234,214,.35); transition: color .4s, -webkit-text-stroke-color .4s; }
+    .grade-tab:hover b { -webkit-text-stroke-color: rgba(243,234,214,.75); }
+    .grade-tab span { display: block; margin-top: 6px; font-size: .64rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .grade-tab:hover { color: var(--ink-1); }
+    .grade-tab[aria-selected="true"] { color: var(--ink-1); }
+    .grade-tab[aria-selected="true"] b { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
+    .tab-ink { position: absolute; bottom: -1px; height: 2px; background: var(--accent, var(--gold)); transition: left .6s var(--ease), width .6s var(--ease), background .6s; box-shadow: 0 0 16px var(--accent, var(--gold)); }
+
+    /* ---------- Kütüphane düzeni ---------- */
+    .lib { display: grid; grid-template-columns: 340px 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: 40px; padding-bottom: clamp(80px, 10vw, 140px); }
+    .side { position: sticky; top: 96px; max-height: calc(100vh - 120px); display: flex; flex-direction: column; }
+    .side-search { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--line-2); margin-bottom: 18px; transition: border-color .3s; }
+    .side-search:focus-within { border-color: var(--gold); }
+    .side-search svg { width: 16px; height: 16px; color: var(--gold); flex: none; }
+    .side-search input { flex: 1; min-width: 0; background: transparent; border: 0; padding: 12px 0; color: var(--ink-1); font: inherit; font-size: .95rem; }
+    .side-search input::placeholder { color: var(--ink-3); }
+    .side-search input:focus { outline: none; }
+    .side-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .unit-list { list-style: none; margin: 0; padding: 0 6px 0 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #2b3a33 transparent; }
+    .unit-btn { --accent: var(--gold); width: 100%; display: grid; grid-template-columns: 34px 1fr; gap: 12px; text-align: left; padding: 14px 10px 14px 6px; border-bottom: 1px solid var(--line); transition: padding .4s var(--ease), background .3s; }
+    .unit-btn .no { font-family: var(--ff-mono); font-size: .72rem; color: var(--ink-3); padding-top: 3px; }
+    .unit-btn .tt { display: block; font-weight: 600; font-size: .92rem; line-height: 1.35; color: var(--ink-2); transition: color .3s; }
+    .unit-btn .st { display: block; margin-top: 3px; font-size: .76rem; line-height: 1.4; color: var(--ink-3); }
+    .unit-btn .gr { display: inline-block; margin-bottom: 4px; font-size: .6rem; font-weight: 700; letter-spacing: .2em; color: var(--accent); }
+    .unit-btn:hover { padding-left: 14px; }
+    .unit-btn:hover .tt { color: var(--ink-1); }
+    .unit-btn[aria-current="true"] { padding-left: 14px; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent); box-shadow: inset 2px 0 0 var(--accent); }
+    .unit-btn[aria-current="true"] .tt { color: var(--ink-1); }
+    .unit-btn[aria-current="true"] .no { color: var(--accent); }
+    .empty { color: var(--ink-3); font-size: .9rem; padding: 14px 6px; }
+    .mobile-units { display: none; }
+
+    /* ---------- Ders görüntüleyici ---------- */
+    .lesson { --accent: var(--gold); min-width: 0; }
+    .lesson.swap { animation: lessonIn .8s var(--ease); }
+    @keyframes lessonIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    .l-head { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+    .l-icon { width: 84px; height: 84px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent); display: grid; place-items: center; font-size: 2.2rem; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); box-shadow: 0 0 50px -16px var(--accent); }
+    .l-head h2 { font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2rem, 3.8vw, 3.2rem); line-height: 1.04; margin: 10px 0 0; }
+    .l-head p { margin: 10px 0 0; color: var(--ink-2); }
+    .l-sec { margin-top: clamp(36px, 5vw, 56px); }
+    .l-sec > .label { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .l-sec > .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .subs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; counter-reset: s; }
+    .subs li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--line); color: var(--ink-2); font-size: .95rem; }
+    .subs li::before { content: counter(s, decimal-leading-zero); font-family: var(--ff-mono); font-size: .72rem; color: var(--accent); padding-top: 3px; }
+    .scenario { padding: clamp(24px, 3vw, 36px); }
+    .scenario .label { color: #8a4b13; }
+    .scenario h3 { font-family: var(--ff-serif); font-weight: 600; font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15; margin: 10px 0 12px; }
+    .scenario p { margin: 0; font-size: 1.02rem; line-height: 1.7; }
+    .potions { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .potion { position: relative; perspective: 1000px; }
+    .potion-inner { position: relative; height: 100%; display: grid; grid-template-columns: 70px 1fr; gap: 18px; padding: 22px; border: 1px solid var(--line); background: var(--panel); overflow: hidden; transform-style: preserve-3d; transition: transform .6s var(--ease), border-color .4s; }
+    .potion:hover .potion-inner { border-color: color-mix(in srgb, var(--v) 50%, transparent); }
+    .potion-inner::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(420px circle at var(--gx,50%) var(--gy,50%), color-mix(in srgb, var(--v) 14%, transparent), transparent 45%); opacity: 0; transition: opacity .4s; }
+    .potion:hover .potion-inner::after { opacity: 1; }
+    .vial { width: 70px; height: 100px; transform: translateZ(30px); }
+    .vial .glass { fill: rgba(255,255,255,.04); stroke: rgba(243,234,214,.5); stroke-width: 1.2; }
+    .vial .liquid { fill: var(--v); opacity: .85; }
+    .vial .shine { fill: rgba(255,255,255,.25); }
+    .vial .bub { fill: rgba(255,255,255,.7); animation: bub 2.4s infinite ease-in; }
+    .vial .bub:nth-of-type(2) { animation-delay: .8s; } .vial .bub:nth-of-type(3) { animation-delay: 1.6s; }
+    @keyframes bub { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .9; } 100% { transform: translateY(-34px); opacity: 0; } }
+    .vial .glow { fill: var(--v); filter: blur(10px); opacity: .5; }
+    .potion h4 { margin: 0 0 10px; font-family: var(--ff-serif); font-weight: 600; font-size: 1.3rem; line-height: 1.2; transform: translateZ(20px); }
+    .potion .formula { font-size: .82rem; transform: translateZ(14px); }
+    .potion p { margin: 10px 0 0; font-size: .86rem; color: var(--ink-2); }
+    .takeaways { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .takeaways li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border: 1px solid var(--line); background: rgba(243,234,214,.02); color: var(--ink-1); }
+    .takeaways li::before { content: "✦"; color: var(--accent); font-size: 1rem; line-height: 1.5; text-align: center; }
+    .tip { display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: start; padding: clamp(22px, 3vw, 32px); border: 1px solid rgba(125,211,252,.35); background: linear-gradient(135deg, rgba(14,70,90,.35), rgba(7,13,11,.4)); }
+    .tip img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 1px solid var(--sky); background: #0f2a33; }
+    .tip .label { color: var(--sky); }
+    .tip p { margin: 8px 0 0; font-family: var(--ff-serif); font-size: clamp(1.15rem, 1.7vw, 1.35rem); line-height: 1.45; }
+
+    /* Quiz */
+    .quiz { padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line-2); background: radial-gradient(120% 120% at 0% 0%, rgba(246,200,106,.06), transparent 60%), var(--panel); }
+    .quiz h3 { margin: 10px 0 20px; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.3; }
+    .opts { display: grid; gap: 10px; }
+    .opt { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; text-align: left; padding: 14px 16px; border: 1px solid var(--line); color: var(--ink-2); transition: border-color .3s, background .3s, color .3s, transform .4s var(--ease); }
+    .opt .k { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; font-family: var(--ff-mono); font-size: .72rem; }
+    .opt:hover:not([disabled]) { border-color: var(--line-2); color: var(--ink-1); transform: translateX(6px); }
+    .opt.correct { border-color: #4ade80; background: rgba(74,222,128,.1); color: var(--ink-1); }
+    .opt.correct .k { background: #4ade80; border-color: #4ade80; color: #062012; }
+    .opt.wrong { border-color: #f87171; background: rgba(248,113,113,.08); color: var(--ink-1); animation: shake .45s; }
+    .opt.wrong .k { background: #f87171; border-color: #f87171; color: #2a0707; }
+    .opt[disabled] { cursor: default; }
+    @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
+    .quiz-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; min-height: 44px; }
+    .quiz-msg { font-weight: 600; }
+    .quiz-msg.ok { color: #4ade80; } .quiz-msg.no { color: #fca5a5; }
+    .score { font-family: var(--ff-mono); font-size: .75rem; color: var(--ink-3); letter-spacing: .1em; }
+
+    /* Deney bağlantısı + gezinme */
+    .exp-link { display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; align-items: center; padding: 22px; border: 1px solid var(--line); transition: border-color .4s; }
+    .exp-link:hover { border-color: var(--ember); }
+    .exp-link .ic { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 1.7rem; background: radial-gradient(circle, rgba(251,146,60,.2), transparent 70%); border: 1px solid rgba(251,146,60,.5); }
+    .exp-link b { display: block; font-family: var(--ff-serif); font-weight: 600; font-size: 1.35rem; line-height: 1.2; margin-top: 4px; }
+    .exp-link .go { font-size: 1.4rem; color: var(--ember); transition: transform .4s var(--ease); }
+    .exp-link:hover .go { transform: translateX(6px); }
+    .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: clamp(48px, 6vw, 80px); background: var(--line); border: 1px solid var(--line); }
+    .pager button { background: var(--bg); padding: 26px 24px; text-align: left; transition: background .4s; }
+    .pager button:last-child { text-align: right; }
+    .pager button:hover:not([disabled]) { background: #0d1814; }
+    .pager button[disabled] { opacity: .35; cursor: default; }
+    .pager b { display: block; margin-top: 8px; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(1.1rem, 1.8vw, 1.45rem); line-height: 1.2; }
+
+    @media (max-width: 1024px) {
+      .lib { grid-template-columns: 1fr; padding-top: 24px; }
+      .side { position: static; max-height: none; }
+      .unit-list { max-height: 380px; }
+      .mobile-units { display: block; }
+    }
+    @media (max-width: 680px) {
+      .subs { grid-template-columns: 1fr; }
+      .l-head { grid-template-columns: 1fr; gap: 14px; }
+      .l-icon { width: 64px; height: 64px; font-size: 1.7rem; }
+      .tip { grid-template-columns: 1fr; }
+      .exp-link { grid-template-columns: 48px 1fr; }
+      .exp-link .ic { width: 48px; height: 48px; font-size: 1.3rem; }
+      .exp-link .go { display: none; }
+      .grade-tab { min-width: 0; padding-right: 8px; }
+      .grade-tab span { font-size: .56rem; letter-spacing: .14em; }
+      .potion-inner { grid-template-columns: 54px 1fr; padding: 18px; }
+      .vial { width: 54px; height: 80px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#ders" class="skip-link">Derse geç</a>
+  <div class="curtain" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18"/><path d="M20 5 L34 29 H6 Z"/></svg></div>
+  <div class="cursor" aria-hidden="true"><span>AÇ</span></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <header class="topbar" id="topbar">
+    <a href="index.html" class="brand" aria-label="Sorchemist ana sayfa" data-magnetic>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18"/><path d="M20 5 L34 29 H6 Z"/><circle class="dot" cx="20" cy="21" r="3"/></svg>
+      <span class="brand-txt">Sorchemist<em>Kimya Akademisi</em></span>
+    </a>
+    <nav class="top-nav" aria-label="Hızlı bağlantılar">
+      <a href="konular.html" aria-current="page">Konular</a>
+      <a href="deneyler.html">Deney Atölyesi</a>
+      <a href="index.html#periyodik-tablo">118 Element</a>
+    </nav>
+    <div class="top-actions">
+      <button class="sound-btn" id="sound-btn" type="button" aria-pressed="false" aria-label="Ortam sesini aç" data-magnetic><span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span></button>
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-magnetic>Menü</button>
+    </div>
+  </header>
+
+  <nav class="menu" id="menu" aria-label="Ana menü">
+    <ul>
+      <li><a href="index.html"><small>01</small>Ana Sayfa</a></li>
+      <li><a href="konular.html" aria-current="page"><small>02</small>Konular</a></li>
+      <li><a href="deneyler.html"><small>03</small>Deney Atölyesi</a></li>
+      <li><a href="index.html#periyodik-tablo"><small>04</small>118 Element</a></li>
+    </ul>
+    <div class="menu-foot"><span>© Sorchemist</span><span>Sorcerer Aqualf rehberliğinde</span></div>
+  </nav>
+
+  <main>
+    <section class="page-hero" aria-label="Parşömen Kütüphanesi">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <div class="scene-fallback" aria-hidden="true"></div>
+      <div class="shade"></div>
+      <div class="inner">
+        <div class="wrap" id="hero-content">
+          <span class="label gold">Parşömen Kütüphanesi · Lise 1-2-3-4</span>
+          <h1 class="h1">
+            <span class="line"><span>Kimyanın <em>29</em></span></span>
+            <span class="line"><span>kadim parşömeni</span></span>
+          </h1>
+          <p class="hero-sub" id="grade-welcome" aria-live="polite"></p>
+          <div class="hero-tools">
+            <div class="grade-tabs" role="tablist" aria-label="Sınıf seç" id="grade-tabs">
+              <span class="tab-ink" id="tab-ink" aria-hidden="true"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap lib">
+      <aside class="side" aria-label="Üniteler">
+        <label class="side-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <span class="sr-only">Tüm ünitelerde ara</span>
+          <input type="search" id="topic-search" placeholder="Tüm ünitelerde ara: mol, pil, gaz…" autocomplete="off">
+        </label>
+        <div class="side-head"><span class="label gold" id="list-title">Üniteler</span><span class="label" id="list-count"></span></div>
+        <ul class="unit-list" id="unit-list"></ul>
+      </aside>
+
+      <article class="lesson" id="ders" tabindex="-1" aria-live="polite"></article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <a href="deneyler.html" class="footer-cta" data-cursor="GİR">
+        <span class="label gold">Teoriyi öğrendin, şimdi sıra deneyde</span>
+        <span class="big-link">Atölyeye <em>geç</em></span>
+      </a>
+      <div class="footer-row">
+        <span>© <span id="year">2026</span> Sorchemist — Sorcerer Aqualf &amp; Sihirli Kimya Akademisi</span>
+        <nav aria-label="Alt menü"><a href="index.html">Ana Sayfa</a><a href="deneyler.html">Deney Atölyesi</a><a href="index.html#periyodik-tablo">Periyodik Cetvel</a></nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/sorchemist.js"></script>
+  <script src="assets/scene.js"></script>
+  <script src="data/konular.js"></script>
+  <script>
+  (() => {
+    "use strict";
+    const { $, $$, chem, escapeHTML: esc, trLower, Sound, store } = SC;
+    const CUR = window.SC_CURRICULUM;
+    const GRADES = [9, 10, 11, 12];
+    const ACCENT = { 9: "#7dd3fc", 10: "#5eead4", 11: "#fcd34d", 12: "#d8b4fe" };
+    const VIAL = { amber: "#f59e0b", aqua: "#22d3ee", emerald: "#34d399", rose: "#fb7185", purple: "#a78bfa" };
+    // İlgili deney kimlikleri → başlık (deneyler.html?deney=… derin bağlantısı)
+    const EXP = {"forge-damascus":["⚔️","Şam Çeliği Şövalye Kılıcı","Demirci Örsü"],"forge-thermite":["🔨","Termit Kor Çekici","Demirci Örsü"],"elephant":["🧪","Fil Dişi Macunu","İksir Masası"],"neutralization":["🧪","Mide İlacı Sırrı (Titrasyon)","İksir Masası"],"golden-rain":["🧪","Altın Yağmuru","İksir Masası"],"aqua-regia":["🧪","Kral Suyu ve Altın Çözünmesi","İksir Masası"],"silver-mirror":["🧪","Gümüş Ayna Deneyi","İksir Masası"],"flame-test":["🧪","Bohr Yörünge Alev Işımaları","İksir Masası"],"alchemist-gold":["🧪","Bakır Paranın Altına Dönüşümü","İksir Masası"],"luminol-glow":["🧪","Luminol Kemilüminesans","İksir Masası"],"ph-rainbow":["🧪","Mor Lahana pH Gökkuşağı","İksir Masası"],"carbon-snake":["🧪","Firavun Yılanı & Karbon Sütunu","İksir Masası"],"hot-ice":["🧪","Sıcak Buz Kulesi","İksir Masası"]};
+
+    SC.createScene($("#scene"), { mode: "library", autoReveal: true, startTime: 40 });
+    SC.heroParallax($("#hero-content"));
+    setTimeout(() => document.body.classList.add("entered"), 200);
+
+    // Quiz skorları (bu oturum için)
+    let scores = {}; try { scores = JSON.parse(store.get("sc-quiz") || "{}"); } catch (e) {}
+    const saveScores = () => store.set("sc-quiz", JSON.stringify(scores));
+
+    let grade = 9, idx = 0, query = "";
+
+    /* ---------- Sınıf sekmeleri ---------- */
+    const tabs = $("#grade-tabs"), ink = $("#tab-ink");
+    GRADES.forEach((g) => {
+      const b = document.createElement("button");
+      b.className = "grade-tab"; b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + g;
+      b.style.setProperty("--accent", ACCENT[g]);
+      b.dataset.magnetic = ".4";
+      b.innerHTML = "<b>" + String(g).padStart(2, "0") + "</b><span>Lise " + (g - 8) + " · " + CUR[g].topics.length + " ünite</span>";
+      b.addEventListener("click", () => { selectGrade(g, 0); Sound.chime(440 * Math.pow(2, (g - 9) / 4), .03, 1.4); });
+      tabs.appendChild(b);
+    });
+    function moveInk() {
+      const t = $("#tab-" + grade); if (!t) return;
+      ink.style.left = t.offsetLeft + "px"; ink.style.width = (t.offsetWidth - 18) + "px"; ink.style.setProperty("--accent", ACCENT[grade]);
+    }
+    addEventListener("resize", moveInk);
+
+    /* ---------- Ünite listesi ---------- */
+    const list = $("#unit-list");
+    function renderList() {
+      list.innerHTML = "";
+      let items;
+      if (query) {
+        const q = trLower(query);
+        items = [];
+        GRADES.forEach((g) => CUR[g].topics.forEach((t, i) => {
+          const hay = trLower([t.title, t.subtitle, t.scenarioTitle, ...(t.subtopics || [])].join(" "));
+          if (hay.includes(q)) items.push({ g, i, t });
+        }));
+        $("#list-title").textContent = "Arama sonuçları";
+      } else {
+        items = CUR[grade].topics.map((t, i) => ({ g: grade, i, t }));
+        $("#list-title").textContent = CUR[grade].shortLabel;
+      }
+      $("#list-count").textContent = items.length + " ünite";
+      if (!items.length) { list.innerHTML = '<li class="empty">“' + esc(query) + '” için ünite bulunamadı. Başka bir kelime dene.</li>'; return; }
+      items.forEach(({ g, i, t }) => {
+        const li = document.createElement("li");
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "unit-btn"; b.style.setProperty("--accent", ACCENT[g]);
+        b.dataset.spot = ""; b.dataset.nosound = "";
+        if (g === grade && i === idx) b.setAttribute("aria-current", "true");
+        const done = scores[t.id] ? " ✓" : "";
+        b.innerHTML = '<span class="no">' + String(t.unitNumber || i + 1).padStart(2, "0") + '</span><span>' +
+          (query ? '<span class="gr">' + g + '. SINIF</span>' : "") +
+          '<span class="tt">' + t.icon + " " + chem(t.title.replace(/^\d+\.\s*Ünite:\s*/, "")) + done + '</span><span class="st">' + chem(t.subtitle) + "</span></span>";
+        b.addEventListener("click", () => {
+          selectGrade(g, i, true);
+          if (innerWidth <= 1024) $("#ders").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        li.appendChild(b); list.appendChild(li);
+      });
+    }
+
+    /* ---------- Ders ---------- */
+    const lesson = $("#ders");
+    function renderLesson() {
+      const g = CUR[grade], t = g.topics[idx], acc = ACCENT[grade];
+      lesson.style.setProperty("--accent", acc);
+      const total = g.topics.length;
+      const prev = idx > 0 ? g.topics[idx - 1] : null, next = idx < total - 1 ? g.topics[idx + 1] : null;
+      const strip = (s) => s.replace(/^\d+\.\s*Ünite:\s*/, "");
+      const exp = t.relatedExperimentId && EXP[t.relatedExperimentId];
+
+      let html = '<header class="l-head"><div class="l-icon" aria-hidden="true">' + t.icon + '</div><div>' +
+        '<span class="label gold">Lise ' + (grade - 8) + " · " + grade + ". Sınıf — Ünite " + (idx + 1) + " / " + total + "</span>" +
+        "<h2>" + chem(strip(t.title)) + "</h2><p>" + chem(t.subtitle) + "</p></div></header>";
+
+      if (t.subtopics?.length) html += '<section class="l-sec"><span class="label">Alt konu başlıkları</span><ol class="subs">' + t.subtopics.map((s) => "<li><span>" + chem(s) + "</span></li>").join("") + "</ol></section>";
+
+      if (t.scenario) html += '<section class="l-sec"><span class="label">Senaryo</span><div class="scenario parchment reveal"><span class="label">🎬 Hobbit köyünden bir sahne</span><h3>' + chem(t.scenarioTitle) + "</h3><p>" + chem(t.scenario) + "</p></div></section>";
+
+      if (t.potionFormulas?.length) html += '<section class="l-sec"><span class="label">İksir formülleri</span><div class="potions">' + t.potionFormulas.map((pf, k) => {
+        const v = VIAL[pf.vialColor] || VIAL.amber;
+        return '<div class="potion reveal" data-tilt=".8" style="--v:' + v + '"><div class="potion-inner">' + vialSVG(k) +
+          "<div><h4>" + chem(pf.name) + '</h4><div class="formula">' + chem(pf.equation) + "</div><p>" + chem(pf.note) + "</p></div></div></div>";
+      }).join("") + "</div></section>";
+
+      if (t.keyTakeaways?.length) html += '<section class="l-sec"><span class="label">Önemli çıkarımlar</span><ul class="takeaways">' + t.keyTakeaways.map((s) => '<li class="reveal"><span>' + chem(s) + "</span></li>").join("") + "</ul></section>";
+
+      if (t.aqualfTip) html += '<section class="l-sec"><div class="tip reveal"><img src="Aqualf1.jpg" alt="" onerror="this.onerror=null;this.src=\'/assets/aistudio/Aqualf1_88586255.jpg\';"><div><span class="label">💧 Sorcerer Aqualf’ın altın sınav şifresi</span><p>' + chem(t.aqualfTip) + "</p></div></div></section>";
+
+      if (t.quizQ && t.quizOptions?.length) {
+        html += '<section class="l-sec"><span class="label">Mini quiz</span><div class="quiz reveal" id="quiz"><span class="label gold">Aqualf soruyor</span><h3>' + chem(t.quizQ) + '</h3><div class="opts" role="group" aria-label="Cevap seçenekleri">' +
+          t.quizOptions.map((o, k) => '<button type="button" class="opt" data-k="' + k + '"><span class="k">' + "ABCDE"[k] + "</span><span>" + chem(o) + '</span><span class="mark" aria-hidden="true"></span></button>').join("") +
+          '</div><div class="quiz-foot"><span class="quiz-msg" id="quiz-msg" aria-live="polite"></span><span class="score" id="score"></span></div></div></section>';
+      }
+
+      if (exp) html += '<section class="l-sec"><span class="label">Bu konunun deneyi</span><a class="exp-link" href="deneyler.html?deney=' + encodeURIComponent(t.relatedExperimentId) + '" data-spot data-cursor="DENE"><span class="ic" aria-hidden="true">' + exp[0] + '</span><span><span class="label">' + exp[2] + "</span><b>" + esc(exp[1]) + '</b></span><span class="go" aria-hidden="true">→</span></a></section>';
+
+      html += '<nav class="pager" aria-label="Üniteler arası gezinme">' +
+        '<button type="button" id="prev"' + (prev ? "" : " disabled") + '><span class="label">← Önceki ünite</span><b>' + (prev ? chem(strip(prev.title)) : "—") + "</b></button>" +
+        '<button type="button" id="next"' + (next ? "" : " disabled") + '><span class="label">Sonraki ünite →</span><b>' + (next ? chem(strip(next.title)) : "—") + "</b></button></nav>";
+
+      lesson.innerHTML = html;
+      lesson.classList.remove("swap"); void lesson.offsetWidth; lesson.classList.add("swap");
+      SC.observeReveal(lesson);
+      bindQuiz(t);
+      $("#prev").addEventListener("click", () => { if (prev) { selectGrade(grade, idx - 1, true); lesson.scrollIntoView({ behavior: "smooth" }); } });
+      $("#next").addEventListener("click", () => { if (next) { selectGrade(grade, idx + 1, true); lesson.scrollIntoView({ behavior: "smooth" }); } });
+      document.title = strip(t.title) + " · " + grade + ". Sınıf Kimya | Sorchemist";
+    }
+
+    function vialSVG(k) {
+      const shapes = [
+        // Erlenmayer
+        '<path class="glow" d="M14 92 L56 92 L46 60 L24 60 Z"/><path class="liquid" d="M12 94 L58 94 L46 62 L24 62 Z"/><path class="glass" d="M27 8 H43 V40 L62 96 H8 L27 40 Z"/><rect class="shine" x="30" y="44" width="3" height="40" rx="1.5" transform="rotate(-18 31 64)"/>',
+        // Yuvarlak balon
+        '<circle class="glow" cx="35" cy="70" r="20"/><path class="liquid" d="M13 72 A22 22 0 0 0 57 72 Z"/><path class="glass" d="M29 8 H41 V46 A26 26 0 1 1 29 46 Z"/><rect class="shine" x="20" y="56" width="3" height="18" rx="1.5"/>',
+        // Tüp
+        '<rect class="glow" x="24" y="50" width="22" height="44" rx="11"/><path class="liquid" d="M24 52 H46 V84 A11 11 0 0 1 24 84 Z"/><path class="glass" d="M22 6 H48 M24 6 V84 A11 11 0 0 0 46 84 V6"/><rect class="shine" x="28" y="20" width="3" height="56" rx="1.5"/>'
+      ];
+      return '<svg class="vial" viewBox="0 0 70 100" aria-hidden="true">' + shapes[k % 3] + '<circle class="bub" cx="32" cy="88" r="2"/><circle class="bub" cx="38" cy="90" r="1.5"/><circle class="bub" cx="35" cy="86" r="1.2"/></svg>';
+    }
+
+    function bindQuiz(t) {
+      const box = $("#quiz"); if (!box) return;
+      const msg = $("#quiz-msg"), sc = $("#score");
+      const updateScore = () => { const n = Object.keys(scores).length; sc.textContent = n ? "Bu oturumda çözülen: " + n + " / 29" : ""; };
+      updateScore();
+      box.addEventListener("click", (e) => {
+        const b = e.target.closest(".opt"); if (!b || b.disabled) return;
+        const k = Number(b.dataset.k);
+        if (k === t.quizAnswer) {
+          b.classList.add("correct");
+          $$(".opt", box).forEach((x) => (x.disabled = true));
+          msg.className = "quiz-msg ok"; msg.textContent = "Harika! Aqualf seninle gurur duyuyor. ✦";
+          Sound.success();
+          scores[t.id] = 1; saveScores(); updateScore(); renderList();
+        } else {
+          b.classList.add("wrong"); b.disabled = true;
+          msg.className = "quiz-msg no"; msg.textContent = "Bu değil, bir daha dene. İpucu: yukarıdaki çıkarımlara göz at.";
+          Sound.fail();
+        }
+      });
+    }
+
+    /* ---------- Durum ve URL ---------- */
+    function selectGrade(g, i = 0, push) {
+      const changedGrade = g !== grade;
+      grade = g; idx = Math.max(0, Math.min(i, CUR[g].topics.length - 1));
+      $$(".grade-tab").forEach((b) => b.setAttribute("aria-selected", String(b.id === "tab-" + g)));
+      moveInk();
+      const w = $("#grade-welcome");
+      if (changedGrade || !w.textContent) { w.style.opacity = 0; setTimeout(() => { w.textContent = "“" + CUR[g].welcome + "”"; w.style.opacity = ""; }, w.textContent ? 250 : 0); }
+      renderList(); renderLesson();
+      const url = new URL(location.href);
+      url.searchParams.set("sinif", g); url.searchParams.set("unite", CUR[g].topics[idx].id);
+      if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
+      history[push ? "pushState" : "replaceState"]({ g, i: idx }, "", url);
+    }
+    addEventListener("popstate", (e) => { if (e.state) selectGrade(e.state.g, e.state.i); });
+
+    let searchT;
+    $("#topic-search").addEventListener("input", (e) => {
+      clearTimeout(searchT);
+      searchT = setTimeout(() => { query = e.target.value.trim(); renderList(); }, 120);
+    });
+
+    // Başlangıç: ?sinif=, ?unite=, ?q=
+    const p = new URLSearchParams(location.search);
+    const pg = parseInt(p.get("sinif"), 10), pu = p.get("unite"), pq = p.get("q");
+    let g0 = GRADES.includes(pg) ? pg : 9, i0 = 0;
+    if (pu) GRADES.forEach((g) => CUR[g].topics.forEach((t, i) => { if (t.id === pu) { g0 = g; i0 = i; } }));
+    if (pq) { query = pq; $("#topic-search").value = pq; }
+    grade = null;
+    selectGrade(g0, i0);
+    setTimeout(() => ($("#grade-welcome").style.transition = "opacity .25s"), 2600);
+    requestAnimationFrame(moveInk);
+    if (document.fonts) document.fonts.ready.then(moveInk);
+  })();
+  </script>
+</body>
+</html>
