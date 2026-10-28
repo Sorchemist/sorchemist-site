@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/sorchemist.css?v=3">
+  <link rel="stylesheet" href="assets/sorchemist.css?v=4">
   <style>
     /* ---------- Sınıf sekmeleri ---------- */
     .grade-tabs { position: relative; display: flex; flex-wrap: wrap; margin-top: 34px; border-bottom: 1px solid var(--line); max-width: 760px; }
@@ -113,6 +113,22 @@
     .exp-link small { display: block; margin-top: 6px; font-size: .86rem; color: var(--ink-2); line-height: 1.5; }
     .exp-link .go { font-size: 1.4rem; color: var(--ember); transition: transform .4s var(--ease); }
     .exp-link:hover .go { transform: translateX(6px); }
+
+    /* Konu anlatımı */
+    .teach { display: grid; gap: 14px; }
+    .t-block { padding: clamp(20px, 3vw, 32px); border: 1px solid var(--line); background: linear-gradient(160deg, rgba(18,32,27,.55), rgba(10,18,15,.35)); }
+    .t-block h3 { display: flex; align-items: baseline; gap: 14px; margin: 0 0 14px; font-family: var(--ff-serif); font-weight: 600; font-size: clamp(1.4rem, 2.2vw, 1.8rem); line-height: 1.15; }
+    .t-no { font-family: var(--ff-mono); font-size: .74rem; font-weight: 600; color: var(--accent); letter-spacing: .1em; flex: none; }
+    .t-block p { margin: 0 0 12px; color: var(--ink-1); font-size: 1.02rem; line-height: 1.75; max-width: 75ch; }
+    .t-block p:last-child { margin-bottom: 0; }
+    .t-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 9px; max-width: 78ch; }
+    .t-list li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; color: var(--ink-2); font-size: .98rem; line-height: 1.65; }
+    .t-list li::before { content: "✦"; color: var(--accent); font-size: .75rem; line-height: 1.9; }
+    .t-ex { margin-top: 16px; padding: 16px 18px; border-left: 2px solid var(--gold); background: rgba(246,200,106,.06); }
+    .t-ex .label { color: var(--gold); }
+    .t-ex .t-q { margin: 8px 0 8px; color: var(--ink-1); font-weight: 600; font-size: .98rem; }
+    .t-ex .t-a { margin: 0; color: var(--ink-2); font-size: .96rem; }
+    .t-ex .t-a b { color: #4ade80; }
 
     /* ---------- Test ---------- */
     .test-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 14px 24px; margin-bottom: 18px; }
@@ -262,12 +278,16 @@
     </div>
   </footer>
 
-  <script src="assets/sorchemist.js?v=3"></script>
-  <script src="assets/scene.js?v=3"></script>
-  <script src="data/sinif9.js?v=3"></script>
-  <script src="data/sinif10.js?v=3"></script>
-  <script src="data/sinif11.js?v=3"></script>
-  <script src="data/sinif12.js?v=3"></script>
+  <script src="assets/sorchemist.js?v=4"></script>
+  <script src="assets/scene.js?v=4"></script>
+  <script src="data/sinif9.js?v=4"></script>
+  <script src="data/sinif10.js?v=4"></script>
+  <script src="data/sinif11.js?v=4"></script>
+  <script src="data/sinif12.js?v=4"></script>
+  <script src="data/anlatim9.js?v=4"></script>
+  <script src="data/anlatim10.js?v=4"></script>
+  <script src="data/anlatim11.js?v=4"></script>
+  <script src="data/anlatim12.js?v=4"></script>
   <script>
   (() => {
     "use strict";
@@ -326,7 +346,8 @@
       if (query) {
         const q = trLower(query);
         GRADES.forEach((g) => G[g].topics.forEach((t, i) => {
-          const hay = trLower([t.title, t.sub, t.story && t.story.t, ...(t.subtopics || []), ...(t.points || [])].join(" "));
+          const L = (window.SC_LESSONS || {})[t.id] || [];
+          const hay = trLower([t.title, t.sub, t.story && t.story.t, ...(t.subtopics || []), ...(t.points || []), ...L.map((x) => x.h + " " + (x.p || []).join(" ") + " " + (x.li || []).join(" "))].join(" "));
           if (hay.includes(q)) { html += item(g, i, t, true); n++; }
         }));
         $("#list-title").textContent = "Arama sonuçları";
@@ -363,11 +384,19 @@
       let html = '<header class="l-head"><div class="l-icon" aria-hidden="true">' + t.icon + "</div><div>" +
         '<span class="label gold">' + gd.label + " · " + esc(th.name) + " · Konu " + topicNo(t) + " / " + total + "</span>" +
         "<h2>" + chem(t.title) + "</h2><p>" + chem(t.sub) + '</p><nav class="l-jump" aria-label="Bu sayfada">' +
-        '<a href="#k-oz">Özet</a><a href="#k-formul">Formüller</a>' + (exp ? '<a href="#k-deney">Deney</a>' : "") + '<a href="#test">Test · ' + t.qs.length + " soru</a></nav></div></header>";
+        '<a href="#k-oz">Konu anlatımı</a><a href="#k-formul">Formüller</a>' + (exp ? '<a href="#k-deney">Deney</a>' : "") + '<a href="#test">Test · ' + t.qs.length + " soru</a></nav></div></header>";
 
       if (t.subtopics && t.subtopics.length) html += '<section class="l-sec"><span class="label">Alt konu başlıkları</span><ol class="subs">' + t.subtopics.map((s) => "<li><span>" + chem(s) + "</span></li>").join("") + "</ol></section>";
       if (t.story) html += '<section class="l-sec"><span class="label">Hikâye</span><div class="scenario parchment reveal"><span class="label">🎬 Aqualf anlatıyor</span><h3>' + chem(t.story.t) + "</h3><p>" + chem(t.story.p) + "</p></div></section>";
-      if (t.points && t.points.length) html += '<section class="l-sec" id="k-oz"><span class="label">Konu özeti</span><ul class="takeaways">' + t.points.map((s) => '<li class="reveal"><span>' + chem(s) + "</span></li>").join("") + "</ul></section>";
+      const lessonParts = (window.SC_LESSONS || {})[t.id];
+      if (lessonParts && lessonParts.length) {
+        html += '<section class="l-sec" id="k-oz"><span class="label">Konu anlatımı</span><div class="teach">' + lessonParts.map((b, k) =>
+          '<article class="t-block reveal"><h3><span class="t-no">' + String(k + 1).padStart(2, "0") + "</span>" + chem(b.h) + "</h3>" +
+          (b.p || []).map((x) => "<p>" + chem(x) + "</p>").join("") +
+          (b.li && b.li.length ? '<ul class="t-list">' + b.li.map((x) => "<li><span>" + chem(x) + "</span></li>").join("") + "</ul>" : "") +
+          (b.ex ? '<div class="t-ex"><span class="label">✎ Örnek</span><p class="t-q">' + chem(b.ex.q) + '</p><p class="t-a"><b>Çözüm:</b> ' + chem(b.ex.a) + "</p></div>" : "") +
+          "</article>").join("") + "</div></section>";
+      } else if (t.points && t.points.length) html += '<section class="l-sec" id="k-oz"><span class="label">Konu anlatımı</span><ul class="takeaways">' + t.points.map((s) => '<li class="reveal"><span>' + chem(s) + "</span></li>").join("") + "</ul></section>";
       if (t.formulas && t.formulas.length) html += '<section class="l-sec" id="k-formul"><span class="label">Formüller ve iksir tarifleri</span><div class="potions">' + t.formulas.map((f, k) => {
         const v = VIAL[f.c] || VIAL.amber;
         return '<div class="potion reveal" data-tilt=".8" style="--v:' + v + '"><div class="potion-inner">' + vialSVG(k) +
