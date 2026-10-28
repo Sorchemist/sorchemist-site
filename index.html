@@ -55,21 +55,33 @@
     #scene { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
     .scene-fallback { position: absolute; inset: 0; background: radial-gradient(80% 60% at 50% 30%, #1d3b38, #070d0b 70%), url("Aqualf1.jpg") center/cover; opacity: .55; display: none; }
     .no-webgl .scene-fallback { display: block; }
-    .hero-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, transparent 50%, rgba(7,13,11,.75) 100%), linear-gradient(to bottom, transparent 70%, var(--bg)); }
-    .hero-sigil { position: absolute; left: 50%; top: 40%; width: min(62vh, 520px); aspect-ratio: 1; margin: calc(min(62vh, 520px) / -2) 0 0 calc(min(62vh, 520px) / -2); pointer-events: none; opacity: 0; transition: opacity 2.5s 1s; mix-blend-mode: screen; }
-    .entered .hero-sigil { opacity: .55; }
+    .hero-vignette { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(3,4,10,.7) 100%), linear-gradient(to bottom, transparent 82%, var(--bg)); }
+    .hero-sigil { position: absolute; left: 50%; top: 34%; width: min(62vh, 520px); aspect-ratio: 1; margin: calc(min(62vh, 520px) / -2) 0 0 calc(min(62vh, 520px) / -2); pointer-events: none; opacity: 0; transition: opacity 2.5s 1s; mix-blend-mode: screen; }
+    .entered .hero-sigil { opacity: .22; }
     .hero-sigil svg { width: 100%; height: 100%; animation: spin 120s linear infinite; }
     .hero-sigil svg * { fill: none; stroke: rgba(246,200,106,.55); stroke-width: .6; vector-effect: non-scaling-stroke; }
     .hero-sigil svg .ring-dash { stroke-dasharray: 2 6; stroke: rgba(125,211,252,.5); }
     @keyframes spin { to { transform: rotate(360deg); } }
-    .hero-content { position: absolute; left: var(--pad); right: var(--pad); bottom: clamp(110px, 16vh, 170px); max-width: var(--max); margin: 0 auto; pointer-events: none; }
-    .hero-content > * { pointer-events: auto; }
-    .hero h1 { font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2.6rem, 6.4vw, 5.6rem); line-height: .98; letter-spacing: -.01em; margin: 18px 0 0; text-shadow: 0 4px 40px rgba(0,0,0,.5); }
-    .hero h1 em { font-style: italic; color: var(--gold); }
-    .hero .label, .hero-content .hero-sub, .hero-cta { opacity: 0; transform: translateY(14px); transition: opacity 1.2s .6s, transform 1.2s .6s var(--ease); }
-    .entered .hero .label, .entered .hero-content .hero-sub, .entered .hero-cta { opacity: 1; transform: none; }
-    .hero-content .hero-sub { max-width: 44ch; margin-top: 26px; transition-delay: .8s; }
-    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; transition-delay: 1s; }
+    .hero-content { position: absolute; z-index: 3; left: var(--pad); right: var(--pad); top: clamp(96px, 13vh, 140px); max-width: 860px; margin: 0 auto; text-align: center; pointer-events: none; }
+    .hero h1 { font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2.3rem, 4.4vw, 3.9rem); line-height: 1; letter-spacing: -.01em; margin: 16px 0 0; text-shadow: 0 4px 40px rgba(0,0,0,.6); }
+    .hero h1 em { font-style: italic; color: var(--gold); text-shadow: 0 0 30px rgba(246,200,106,.45); }
+    .hero .label, .hero-content .hero-sub { opacity: 0; transform: translateY(14px); transition: opacity 1.2s .6s, transform 1.2s .6s var(--ease); }
+    .entered .hero .label, .entered .hero-content .hero-sub { opacity: 1; transform: none; }
+    .hero-content .hero-sub { max-width: 50ch; margin: 18px auto 0; transition-delay: .8s; }
+
+    /* Meşale bağlantıları */
+    .torch-layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .torch { --r: 40px; position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: auto; will-change: transform; outline: none; }
+    .torch-hit { position: absolute; left: calc(var(--r) * -1.9); top: calc(var(--r) * -3.6); width: calc(var(--r) * 3.8); height: calc(var(--r) * 5.6); border-radius: 45%; }
+    .torch-label { position: absolute; left: 0; top: calc(var(--r) * 1.1 + 10px); transform: translate(-50%, 14px); width: max-content; max-width: 250px; padding: 10px 20px 12px; background: radial-gradient(closest-side, rgba(3,4,10,.85), rgba(3,4,10,.55) 60%, rgba(3,4,10,0)); text-align: center; opacity: 0; transition: opacity 1s var(--ease), transform 1s var(--ease); pointer-events: none; text-shadow: 0 2px 14px #000, 0 0 2px #000; }
+    .torch.on .torch-label { opacity: 1; transform: translate(-50%, 0); }
+    .torch.on.dim .torch-label { opacity: .4; }
+    .torch-rune { display: block; font-family: var(--ff-display); font-size: .7rem; letter-spacing: .4em; padding-left: .4em; color: var(--c); }
+    .torch-label b { display: block; margin-top: 4px; font-family: var(--ff-serif); font-weight: 600; font-size: clamp(1.1rem, 1.5vw, 1.4rem); line-height: 1.1; color: var(--ink-1); transition: color .4s, text-shadow .4s; }
+    .torch-label small { display: block; margin-top: 5px; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); transition: color .4s; }
+    .torch:hover .torch-label b, .torch:focus-visible .torch-label b { color: #fff; text-shadow: 0 0 18px var(--c), 0 0 2px #000; }
+    .torch:hover .torch-label small, .torch:focus-visible .torch-label small { color: var(--c); }
+    .torch:focus-visible .torch-hit { box-shadow: 0 0 0 1px var(--c), 0 0 30px -6px var(--c); }
     .hero-foot { position: absolute; left: var(--pad); right: var(--pad); bottom: 30px; display: flex; justify-content: space-between; align-items: end; gap: 20px; opacity: 0; transition: opacity 1.2s 1.6s; }
     .entered .hero-foot { opacity: 1; }
     .scroll-hint { display: flex; align-items: center; gap: 14px; }
@@ -193,7 +205,11 @@
     }
     @media (max-width: 680px) {
       .coords { display: none; }
-      .hero-content { bottom: 96px; }
+      .hero-content { top: 92px; }
+      .hero-content .hero-sub { display: none; }
+      .torch-label { max-width: 130px; }
+      .torch-label small { display: none; }
+      .torch-label b { font-size: 1rem; }
       .grade { grid-template-columns: 70px 1fr 44px; gap: 14px; padding-left: 0; padding-right: 0; }
       .grade .count { display: none; }
       .grade .go { width: 44px; height: 44px; }
@@ -225,10 +241,10 @@
       <circle class="core" cx="150" cy="160" r="7"/>
     </svg>
     <div class="gate-title" id="gate-title">SORCHEMIST<small>SİHİRLİ KİMYA AKADEMİSİ</small></div>
-    <div class="gate-progress" id="gate-progress" aria-live="polite">SİMYA OCAĞI ISINIYOR · 0%</div>
+    <div class="gate-progress" id="gate-progress" aria-live="polite">MEŞALELER YAKILIYOR · 0%</div>
     <div class="gate-actions">
-      <button class="gate-btn" id="enter-sound" type="button">Sesle Gir</button>
-      <button class="gate-alt" id="enter-silent" type="button">Sessiz Gir</button>
+      <button class="gate-btn" id="enter-gate" type="button">Kapıyı Aç</button>
+      <span class="gate-alt">Meşaleler seni bekliyor</span>
     </div>
   </div>
 
@@ -244,9 +260,6 @@
       <a href="#periyodik-tablo">118 Element</a>
     </nav>
     <div class="top-actions">
-      <button class="sound-btn" id="sound-btn" type="button" aria-pressed="false" aria-label="Ortam sesini aç" data-magnetic>
-        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      </button>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-magnetic>Menü</button>
     </div>
   </header>
@@ -273,18 +286,14 @@
         </svg>
       </div>
       <div class="hero-vignette"></div>
+      <div class="torch-layer" id="torch-layer"></div>
       <div class="hero-content" id="hero-content">
-        <span class="label gold">Hobbit Köyü Simya Kütüphanesi</span>
+        <span class="label gold">Sorcerer Aqualf'ın meşale vadisi</span>
         <h1>
-          <span class="line"><span>Kimyayı sihirle,</span></span>
-          <span class="line"><span>atölyeyi <em>gerçek</em></span></span>
-          <span class="line"><span>deneylerle buluştur.</span></span>
+          <span class="line"><span>Bir meşale seç,</span></span>
+          <span class="line"><span>yolunu <em>aydınlat.</em></span></span>
         </h1>
-        <p class="hero-sub">Baş Simyacı Sorcerer Aqualf eşliğinde 118 elementi keşfet, 34 canlı deneyle simya atölyesinde çalış ve 2026 lise kimya müfredatının 34 konusunu çözümlü testlerle pekiştir.</p>
-        <div class="hero-cta">
-          <a href="konular.html" class="btn btn-gold" data-magnetic>Konulara Başla <span class="arr">→</span></a>
-          <a href="deneyler.html" class="btn" data-magnetic>Atölyeye Gir <span class="arr">→</span></a>
-        </div>
+        <p class="hero-sub">Her alev Sorchemist'in başka bir odasına açılır: konular, deneyler, elementler. Hangisi seni çağırıyor?</p>
       </div>
       <div class="hero-foot">
         <a href="#aqualf" class="scroll-hint label"><span class="track"></span>Keşfetmek için kaydır</a>
@@ -438,15 +447,21 @@
   </footer>
 
   <script src="assets/sorchemist.js"></script>
-  <script src="assets/scene.js"></script>
+  <script src="assets/torches.js"></script>
   <script src="data/elements.js"></script>
   <script>
   (() => {
     "use strict";
-    const { $, $$, clamp, reduced, store, Sound, mouse } = SC;
+    const { $, $$, clamp, reduced, store, mouse, Sound } = SC;
 
     /* ---------- 3D sahne ---------- */
-    const scene = SC.createScene($("#scene"), { mode: "valley" });
+    const scene = SC.createTorches($("#scene"), $("#torch-layer"), [
+      { href: "konular.html", name: "Parşömen Kütüphanesi", sub: "34 konu · 171 çözümlü soru", rune: "I", color: "#f6c86a" },
+      { href: "deneyler.html", name: "Simya Atölyesi", sub: "34 canlı deney", rune: "II", color: "#34d399" },
+      { href: "#periyodik-tablo", name: "Element Cetveli", sub: "118 elementin sırrı", rune: "III", color: "#7dd3fc" },
+      { href: "#siniflar", name: "Dört Kitap", sub: "9 · 10 · 11 · 12. sınıf", rune: "IV", color: "#c084fc" },
+      { href: "#aqualf", name: "Aqualf'ın Kulesi", sub: "Rehberinle tanış", rune: "V", color: "#fb7185" }
+    ]);
     SC.heroParallax($("#hero-content"), $("#hero-sigil"));
     const cx = $("#coord-x"), cy = $("#coord-y");
     SC.onFrame(() => { if (scrollY < innerHeight) { cx.textContent = mouse.sx.toFixed(2); cy.textContent = (-mouse.sy).toFixed(2); } });
@@ -455,9 +470,8 @@
     const gate = $("#gate"), main = $("#ana-icerik"), topbar = $("#topbar");
     main.inert = true; topbar.inert = true;
     let entered = false;
-    function enter(withSound) {
+    function enter() {
       if (entered) return; entered = true;
-      if (withSound) Sound.set(true);
       gate.classList.add("done");
       document.body.classList.remove("locked");
       main.inert = false; topbar.inert = false;
@@ -466,21 +480,15 @@
       store.set("sc-entered", "1");
       setTimeout(() => gate.remove(), 1400);
     }
-    $("#enter-sound").addEventListener("click", () => enter(true));
-    $("#enter-silent").addEventListener("click", () => enter(false));
+    $("#enter-gate").addEventListener("click", () => enter());
     gate.addEventListener("pointermove", (e) => {
       gate.style.setProperty("--gx", ((e.clientX / innerWidth) - .5) * 24 + "px");
       gate.style.setProperty("--gy", ((e.clientY / innerHeight) - .5) * 24 + "px");
     });
     (function runGate() {
       if (store.get("sc-entered") === "1" || reduced) {
-        // Aynı oturumda dönen ziyaretçi: giriş ekranını atla, ses tercihini ilk etkileşimde uygula
-        if (store.get("sc-sound") === "1") {
-          document.body.classList.add("sound-on");
-          const arm = (e) => { if (!e.target.closest("#sound-btn")) Sound.set(true); removeEventListener("pointerdown", arm, true); removeEventListener("keydown", arm, true); };
-          addEventListener("pointerdown", arm, true); addEventListener("keydown", arm, true);
-        }
-        requestAnimationFrame(() => enter(false));
+        // Aynı oturumda dönen ziyaretçi: giriş ekranını atla
+        requestAnimationFrame(() => enter());
         return;
       }
       requestAnimationFrame(() => gate.classList.add("drawing"));
@@ -490,9 +498,9 @@
       (function step(now) {
         const t = clamp((now - start) / minTime, 0, 1);
         const p = Math.round((loaded ? t : Math.min(t, .9)) * 100);
-        prog.textContent = "SİMYA OCAĞI ISINIYOR · " + p + "%";
+        prog.textContent = "MEŞALELER YAKILIYOR · " + p + "%";
         if (p < 100) requestAnimationFrame(step);
-        else { gate.classList.add("ready"); $("#enter-sound").focus({ preventScroll: true }); }
+        else { gate.classList.add("ready"); $("#enter-gate").focus({ preventScroll: true }); }
       })(start);
     })();
 
