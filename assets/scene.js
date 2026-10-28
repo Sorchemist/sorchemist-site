@@ -163,7 +163,7 @@
     const scrollRange = opts.scrollRange || innerHeight;
     function frame(now) {
       requestAnimationFrame(frame);
-      const dt = Math.min((now - last) / 1000, .1); last = now;
+      const dt = Math.max(0, Math.min((now - last) / 1000, .1)); last = now;
       if (!running || !visible) return;
       if (!SC.reduced) time += dt;
       intro = SC.lerp(intro, introTarget, 1 - Math.pow(.02, dt));
