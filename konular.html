@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Lise 1-2-3-4 Tüm Kimya Konuları & Parşömen Kütüphanesi | Sorchemist</title>
-  <meta name="description" content="Sorcerer Aqualf ile 9, 10, 11 ve 12. sınıf kimya müfredatının 29 ünitesi: senaryolar, iksir formülleri, sınav şifreleri, önemli çıkarımlar ve mini quizler.">
+  <title>Lise Kimya Konuları ve Testleri (2026 Müfredatı) · Parşömen Kütüphanesi | Sorchemist</title>
+  <meta name="description" content="2026-2027 lise kimya müfredatına göre 9, 10, 11 ve 12. sınıfın 34 konusu: konu anlatımı, formüller, sınav ipuçları, her konu için çözümlü çoktan seçmeli test ve etkileşimli deney.">
   <link rel="canonical" href="https://www.sorchemist.com/konular.html">
   <meta name="theme-color" content="#070d0b">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:site_name" content="Sorchemist">
-  <meta property="og:title" content="Parşömen Kütüphanesi | Sorchemist">
-  <meta property="og:description" content="Lise 1-2-3-4 kimya müfredatının 29 ünitesi, Sorcerer Aqualf’ın anlatımıyla.">
+  <meta property="og:title" content="Parşömen Kütüphanesi · Lise Kimya Konuları | Sorchemist">
+  <meta property="og:description" content="Türkiye Yüzyılı Maarif Modeli'ne göre 34 kimya konusu, 171 çözümlü soru, 34 etkileşimli deney.">
   <meta property="og:url" content="https://www.sorchemist.com/konular.html">
   <meta property="og:image" content="https://www.sorchemist.com/Aqualf1.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -21,16 +21,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/sorchemist.css">
   <style>
-    /* ---------- Sınıf sekmeleri (hero içinde) ---------- */
-    .grade-tabs { position: relative; display: flex; flex-wrap: wrap; gap: 0; margin-top: 34px; border-bottom: 1px solid var(--line); max-width: 760px; }
+    /* ---------- Sınıf sekmeleri ---------- */
+    .grade-tabs { position: relative; display: flex; flex-wrap: wrap; margin-top: 34px; border-bottom: 1px solid var(--line); max-width: 760px; }
     .grade-tab { position: relative; flex: 1 1 0; min-width: 120px; text-align: left; padding: 14px 18px 16px 0; color: var(--ink-3); transition: color .4s; }
     .grade-tab b { display: block; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(243,234,214,.35); transition: color .4s, -webkit-text-stroke-color .4s; }
     .grade-tab:hover b { -webkit-text-stroke-color: rgba(243,234,214,.75); }
     .grade-tab span { display: block; margin-top: 6px; font-size: .64rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
-    .grade-tab:hover { color: var(--ink-1); }
-    .grade-tab[aria-selected="true"] { color: var(--ink-1); }
+    .grade-tab:hover, .grade-tab[aria-selected="true"] { color: var(--ink-1); }
     .grade-tab[aria-selected="true"] b { color: var(--accent); -webkit-text-stroke-color: var(--accent); }
     .tab-ink { position: absolute; bottom: -1px; height: 2px; background: var(--accent, var(--gold)); transition: left .6s var(--ease), width .6s var(--ease), background .6s; box-shadow: 0 0 16px var(--accent, var(--gold)); }
+    .program { margin-top: 14px; font-size: .74rem; color: var(--ink-3); letter-spacing: .04em; }
+    .program b { color: var(--ink-2); font-weight: 600; }
 
     /* ---------- Kütüphane düzeni ---------- */
     .lib { display: grid; grid-template-columns: 340px 1fr; gap: clamp(28px, 4vw, 64px); align-items: start; padding-top: 40px; padding-bottom: clamp(80px, 10vw, 140px); }
@@ -41,30 +42,36 @@
     .side-search input { flex: 1; min-width: 0; background: transparent; border: 0; padding: 12px 0; color: var(--ink-1); font: inherit; font-size: .95rem; }
     .side-search input::placeholder { color: var(--ink-3); }
     .side-search input:focus { outline: none; }
-    .side-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .side-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
     .unit-list { list-style: none; margin: 0; padding: 0 6px 0 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #2b3a33 transparent; }
-    .unit-btn { --accent: var(--gold); width: 100%; display: grid; grid-template-columns: 34px 1fr; gap: 12px; text-align: left; padding: 14px 10px 14px 6px; border-bottom: 1px solid var(--line); transition: padding .4s var(--ease), background .3s; }
+    .theme-h { padding: 18px 0 8px; font-size: .62rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--line-2); }
+    .theme-h span:last-child { font-family: var(--ff-mono); letter-spacing: .06em; text-transform: none; }
+    .unit-btn { --accent: var(--gold); width: 100%; display: grid; grid-template-columns: 38px 1fr auto; gap: 10px; text-align: left; padding: 13px 8px 13px 6px; border-bottom: 1px solid var(--line); transition: padding .4s var(--ease), background .3s; }
     .unit-btn .no { font-family: var(--ff-mono); font-size: .72rem; color: var(--ink-3); padding-top: 3px; }
     .unit-btn .tt { display: block; font-weight: 600; font-size: .92rem; line-height: 1.35; color: var(--ink-2); transition: color .3s; }
-    .unit-btn .st { display: block; margin-top: 3px; font-size: .76rem; line-height: 1.4; color: var(--ink-3); }
+    .unit-btn .st { display: block; margin-top: 3px; font-size: .74rem; line-height: 1.4; color: var(--ink-3); }
     .unit-btn .gr { display: inline-block; margin-bottom: 4px; font-size: .6rem; font-weight: 700; letter-spacing: .2em; color: var(--accent); }
+    .unit-btn .badge { align-self: start; margin-top: 2px; padding: 2px 7px; border: 1px solid var(--line-2); border-radius: 99px; font-family: var(--ff-mono); font-size: .64rem; color: var(--ink-3); white-space: nowrap; }
+    .unit-btn .badge.full { border-color: #4ade80; color: #4ade80; }
     .unit-btn:hover { padding-left: 14px; }
     .unit-btn:hover .tt { color: var(--ink-1); }
     .unit-btn[aria-current="true"] { padding-left: 14px; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent); box-shadow: inset 2px 0 0 var(--accent); }
     .unit-btn[aria-current="true"] .tt { color: var(--ink-1); }
     .unit-btn[aria-current="true"] .no { color: var(--accent); }
     .empty { color: var(--ink-3); font-size: .9rem; padding: 14px 6px; }
-    .mobile-units { display: none; }
 
-    /* ---------- Ders görüntüleyici ---------- */
-    .lesson { --accent: var(--gold); min-width: 0; }
+    /* ---------- Ders ---------- */
+    .lesson { --accent: var(--gold); min-width: 0; scroll-margin-top: 80px; }
     .lesson.swap { animation: lessonIn .8s var(--ease); }
     @keyframes lessonIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
     .l-head { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
     .l-icon { width: 84px; height: 84px; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--accent) 60%, transparent); display: grid; place-items: center; font-size: 2.2rem; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%); box-shadow: 0 0 50px -16px var(--accent); }
     .l-head h2 { font-family: var(--ff-serif); font-weight: 500; font-size: clamp(2rem, 3.8vw, 3.2rem); line-height: 1.04; margin: 10px 0 0; }
     .l-head p { margin: 10px 0 0; color: var(--ink-2); }
-    .l-sec { margin-top: clamp(36px, 5vw, 56px); }
+    .l-jump { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .l-jump a { padding: 7px 13px; border: 1px solid var(--line); border-radius: 99px; font-size: .74rem; font-weight: 600; color: var(--ink-2); transition: border-color .3s, color .3s; }
+    .l-jump a:hover { border-color: var(--accent); color: var(--ink-1); }
+    .l-sec { margin-top: clamp(36px, 5vw, 56px); scroll-margin-top: 90px; }
     .l-sec > .label { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
     .l-sec > .label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
     .subs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; counter-reset: s; }
@@ -78,8 +85,6 @@
     .potion { position: relative; perspective: 1000px; }
     .potion-inner { position: relative; height: 100%; display: grid; grid-template-columns: 70px 1fr; gap: 18px; padding: 22px; border: 1px solid var(--line); background: var(--panel); overflow: hidden; transform-style: preserve-3d; transition: transform .6s var(--ease), border-color .4s; }
     .potion:hover .potion-inner { border-color: color-mix(in srgb, var(--v) 50%, transparent); }
-    .potion-inner::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(420px circle at var(--gx,50%) var(--gy,50%), color-mix(in srgb, var(--v) 14%, transparent), transparent 45%); opacity: 0; transition: opacity .4s; }
-    .potion:hover .potion-inner::after { opacity: 1; }
     .vial { width: 70px; height: 100px; transform: translateZ(30px); }
     .vial .glass { fill: rgba(255,255,255,.04); stroke: rgba(243,234,214,.5); stroke-width: 1.2; }
     .vial .liquid { fill: var(--v); opacity: .85; }
@@ -88,8 +93,8 @@
     .vial .bub:nth-of-type(2) { animation-delay: .8s; } .vial .bub:nth-of-type(3) { animation-delay: 1.6s; }
     @keyframes bub { 0% { transform: translateY(0); opacity: 0; } 20% { opacity: .9; } 100% { transform: translateY(-34px); opacity: 0; } }
     .vial .glow { fill: var(--v); filter: blur(10px); opacity: .5; }
-    .potion h4 { margin: 0 0 10px; font-family: var(--ff-serif); font-weight: 600; font-size: 1.3rem; line-height: 1.2; transform: translateZ(20px); }
-    .potion .formula { font-size: .82rem; transform: translateZ(14px); }
+    .potion h4 { margin: 0 0 10px; font-family: var(--ff-serif); font-weight: 600; font-size: 1.3rem; line-height: 1.2; }
+    .potion .formula { font-size: .82rem; }
     .potion p { margin: 10px 0 0; font-size: .86rem; color: var(--ink-2); }
     .takeaways { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
     .takeaways li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; padding: 16px 18px; border: 1px solid var(--line); background: rgba(243,234,214,.02); color: var(--ink-1); }
@@ -99,11 +104,36 @@
     .tip .label { color: var(--sky); }
     .tip p { margin: 8px 0 0; font-family: var(--ff-serif); font-size: clamp(1.15rem, 1.7vw, 1.35rem); line-height: 1.45; }
 
-    /* Quiz */
-    .quiz { padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line-2); background: radial-gradient(120% 120% at 0% 0%, rgba(246,200,106,.06), transparent 60%), var(--panel); }
-    .quiz h3 { margin: 10px 0 20px; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(1.35rem, 2.1vw, 1.75rem); line-height: 1.3; }
-    .opts { display: grid; gap: 10px; }
-    .opt { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: center; text-align: left; padding: 14px 16px; border: 1px solid var(--line); color: var(--ink-2); transition: border-color .3s, background .3s, color .3s, transform .4s var(--ease); }
+    /* Deney kartı */
+    .exp-link { display: grid; grid-template-columns: 64px 1fr auto; gap: 20px; align-items: center; padding: 24px; border: 1px solid rgba(251,146,60,.35); background: linear-gradient(135deg, rgba(120,53,15,.25), rgba(7,13,11,.3)); transition: border-color .4s, transform .5s var(--ease); }
+    .exp-link:hover { border-color: var(--ember); transform: translateY(-2px); }
+    .exp-link .ic { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-size: 1.8rem; background: radial-gradient(circle, rgba(251,146,60,.25), transparent 70%); border: 1px solid rgba(251,146,60,.55); box-shadow: 0 0 40px -12px #fb923c; }
+    .exp-link .label { color: var(--ember); }
+    .exp-link b { display: block; font-family: var(--ff-serif); font-weight: 600; font-size: 1.45rem; line-height: 1.2; margin-top: 4px; }
+    .exp-link small { display: block; margin-top: 6px; font-size: .86rem; color: var(--ink-2); line-height: 1.5; }
+    .exp-link .go { font-size: 1.4rem; color: var(--ember); transition: transform .4s var(--ease); }
+    .exp-link:hover .go { transform: translateX(6px); }
+
+    /* ---------- Test ---------- */
+    .test-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 14px 24px; margin-bottom: 18px; }
+    .test-head h3 { margin: 6px 0 0; font-family: var(--ff-serif); font-weight: 500; font-size: clamp(1.6rem, 2.6vw, 2.2rem); line-height: 1.1; }
+    .meter { min-width: 220px; flex: 0 1 300px; }
+    .meter .row { display: flex; justify-content: space-between; font-family: var(--ff-mono); font-size: .74rem; color: var(--ink-2); }
+    .meter .bar { position: relative; height: 4px; margin-top: 8px; background: var(--line); overflow: hidden; display: flex; }
+    .meter .bar i { display: block; height: 100%; transition: width .5s var(--ease); }
+    .meter .bar .ok { background: #4ade80; box-shadow: 0 0 10px #4ade80; }
+    .meter .bar .no { background: #f87171; }
+    .qs { display: grid; gap: 16px; counter-reset: q; }
+    .q { padding: clamp(20px, 3vw, 30px); border: 1px solid var(--line); background: radial-gradient(120% 120% at 0% 0%, rgba(246,200,106,.05), transparent 60%), var(--panel); }
+    .q.done-ok { border-color: rgba(74,222,128,.4); }
+    .q.done-no { border-color: rgba(248,113,113,.35); }
+    .q-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    .q-no { font-family: var(--ff-mono); font-size: .72rem; letter-spacing: .12em; color: var(--accent); }
+    .q-res { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .q-res.ok { color: #4ade80; } .q-res.no { color: #fca5a5; }
+    .q h4 { margin: 10px 0 18px; font-family: var(--ff-body); font-weight: 600; font-size: clamp(1.02rem, 1.4vw, 1.12rem); line-height: 1.55; white-space: pre-line; color: var(--ink-1); }
+    .opts { display: grid; gap: 8px; }
+    .opt { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: center; text-align: left; padding: 12px 14px; border: 1px solid var(--line); color: var(--ink-2); font-size: .95rem; transition: border-color .3s, background .3s, color .3s, transform .4s var(--ease); }
     .opt .k { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; font-family: var(--ff-mono); font-size: .72rem; }
     .opt:hover:not([disabled]) { border-color: var(--line-2); color: var(--ink-1); transform: translateX(6px); }
     .opt.correct { border-color: #4ade80; background: rgba(74,222,128,.1); color: var(--ink-1); }
@@ -111,19 +141,17 @@
     .opt.wrong { border-color: #f87171; background: rgba(248,113,113,.08); color: var(--ink-1); animation: shake .45s; }
     .opt.wrong .k { background: #f87171; border-color: #f87171; color: #2a0707; }
     .opt[disabled] { cursor: default; }
+    .opt[disabled]:not(.correct):not(.wrong) { opacity: .55; }
     @keyframes shake { 20%, 60% { transform: translateX(-6px); } 40%, 80% { transform: translateX(6px); } }
-    .quiz-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 18px; min-height: 44px; }
-    .quiz-msg { font-weight: 600; }
-    .quiz-msg.ok { color: #4ade80; } .quiz-msg.no { color: #fca5a5; }
-    .score { font-family: var(--ff-mono); font-size: .75rem; color: var(--ink-3); letter-spacing: .1em; }
+    .expl { display: none; margin-top: 14px; padding: 14px 16px; border-left: 2px solid var(--sky); background: rgba(125,211,252,.06); color: var(--ink-1); font-size: .93rem; line-height: 1.6; }
+    .expl b { color: var(--sky); }
+    .q.answered .expl { display: block; animation: lessonIn .5s var(--ease); }
+    .result { display: none; margin-top: 18px; padding: clamp(22px, 3vw, 32px); border: 1px solid var(--line-2); text-align: center; background: radial-gradient(80% 120% at 50% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%), var(--bg-2); }
+    .result.show { display: block; animation: lessonIn .7s var(--ease); }
+    .result .big { font-family: var(--ff-serif); font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; color: var(--accent); }
+    .result p { margin: 10px auto 18px; max-width: 520px; color: var(--ink-2); }
+    .result .acts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
 
-    /* Deney bağlantısı + gezinme */
-    .exp-link { display: grid; grid-template-columns: 60px 1fr auto; gap: 18px; align-items: center; padding: 22px; border: 1px solid var(--line); transition: border-color .4s; }
-    .exp-link:hover { border-color: var(--ember); }
-    .exp-link .ic { width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 1.7rem; background: radial-gradient(circle, rgba(251,146,60,.2), transparent 70%); border: 1px solid rgba(251,146,60,.5); }
-    .exp-link b { display: block; font-family: var(--ff-serif); font-weight: 600; font-size: 1.35rem; line-height: 1.2; margin-top: 4px; }
-    .exp-link .go { font-size: 1.4rem; color: var(--ember); transition: transform .4s var(--ease); }
-    .exp-link:hover .go { transform: translateX(6px); }
     .pager { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: clamp(48px, 6vw, 80px); background: var(--line); border: 1px solid var(--line); }
     .pager button { background: var(--bg); padding: 26px 24px; text-align: left; transition: background .4s; }
     .pager button:last-child { text-align: right; }
@@ -134,8 +162,7 @@
     @media (max-width: 1024px) {
       .lib { grid-template-columns: 1fr; padding-top: 24px; }
       .side { position: static; max-height: none; }
-      .unit-list { max-height: 380px; }
-      .mobile-units { display: block; }
+      .unit-list { max-height: 420px; }
     }
     @media (max-width: 680px) {
       .subs { grid-template-columns: 1fr; }
@@ -146,9 +173,12 @@
       .exp-link .ic { width: 48px; height: 48px; font-size: 1.3rem; }
       .exp-link .go { display: none; }
       .grade-tab { min-width: 0; padding-right: 8px; }
-      .grade-tab span { font-size: .56rem; letter-spacing: .14em; }
+      .grade-tab span { font-size: .56rem; letter-spacing: .12em; }
       .potion-inner { grid-template-columns: 54px 1fr; padding: 18px; }
       .vial { width: 54px; height: 80px; }
+      .pager { grid-template-columns: 1fr; }
+      .pager button:last-child { text-align: left; }
+      .meter { flex-basis: 100%; }
     }
   </style>
 </head>
@@ -191,33 +221,32 @@
       <div class="shade"></div>
       <div class="inner">
         <div class="wrap" id="hero-content">
-          <span class="label gold">Parşömen Kütüphanesi · Lise 1-2-3-4</span>
+          <span class="label gold">Parşömen Kütüphanesi · 2026 lise kimya müfredatı</span>
           <h1 class="h1">
-            <span class="line"><span>Kimyanın <em>29</em></span></span>
-            <span class="line"><span>kadim parşömeni</span></span>
+            <span class="line"><span><em id="topic-total">34</em> konu,</span></span>
+            <span class="line"><span><em id="q-total">171</em> çözümlü soru</span></span>
           </h1>
           <p class="hero-sub" id="grade-welcome" aria-live="polite"></p>
           <div class="hero-tools">
-            <div class="grade-tabs" role="tablist" aria-label="Sınıf seç" id="grade-tabs">
-              <span class="tab-ink" id="tab-ink" aria-hidden="true"></span>
-            </div>
+            <div class="grade-tabs" role="tablist" aria-label="Sınıf seç" id="grade-tabs"><span class="tab-ink" id="tab-ink" aria-hidden="true"></span></div>
+            <p class="program" id="program"></p>
           </div>
         </div>
       </div>
     </section>
 
     <div class="wrap lib">
-      <aside class="side" aria-label="Üniteler">
+      <aside class="side" aria-label="Konular">
         <label class="side-search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <span class="sr-only">Tüm ünitelerde ara</span>
-          <input type="search" id="topic-search" placeholder="Tüm ünitelerde ara: mol, pil, gaz…" autocomplete="off">
+          <span class="sr-only">Tüm konularda ara</span>
+          <input type="search" id="topic-search" placeholder="Tüm konularda ara: mol, pil, gaz, denge…" autocomplete="off">
         </label>
-        <div class="side-head"><span class="label gold" id="list-title">Üniteler</span><span class="label" id="list-count"></span></div>
+        <div class="side-head"><span class="label gold" id="list-title">Konular</span><span class="label" id="list-count"></span></div>
         <ul class="unit-list" id="unit-list"></ul>
       </aside>
 
-      <article class="lesson" id="ders" tabindex="-1" aria-live="polite"></article>
+      <article class="lesson" id="ders" tabindex="-1"></article>
     </div>
   </main>
 
@@ -228,7 +257,7 @@
         <span class="big-link">Atölyeye <em>geç</em></span>
       </a>
       <div class="footer-row">
-        <span>© <span id="year">2026</span> Sorchemist — Sorcerer Aqualf &amp; Sihirli Kimya Akademisi</span>
+        <span>© <span id="year">2026</span> Sorchemist · Sorcerer Aqualf &amp; Sihirli Kimya Akademisi</span>
         <nav aria-label="Alt menü"><a href="index.html">Ana Sayfa</a><a href="deneyler.html">Deney Atölyesi</a><a href="index.html#periyodik-tablo">Periyodik Cetvel</a></nav>
       </div>
     </div>
@@ -236,37 +265,43 @@
 
   <script src="assets/sorchemist.js"></script>
   <script src="assets/scene.js"></script>
-  <script src="data/konular.js"></script>
+  <script src="data/sinif9.js"></script>
+  <script src="data/sinif10.js"></script>
+  <script src="data/sinif11.js"></script>
+  <script src="data/sinif12.js"></script>
   <script>
   (() => {
     "use strict";
     const { $, $$, chem, escapeHTML: esc, trLower, Sound, store } = SC;
-    const CUR = window.SC_CURRICULUM;
+    const G = window.SC_GRADES;
     const GRADES = [9, 10, 11, 12];
     const ACCENT = { 9: "#7dd3fc", 10: "#5eead4", 11: "#fcd34d", 12: "#d8b4fe" };
     const VIAL = { amber: "#f59e0b", aqua: "#22d3ee", emerald: "#34d399", rose: "#fb7185", purple: "#a78bfa" };
-    // İlgili deney kimlikleri → başlık (deneyler.html?deney=… derin bağlantısı)
-    const EXP = {"forge-damascus":["⚔️","Şam Çeliği Şövalye Kılıcı","Demirci Örsü"],"forge-thermite":["🔨","Termit Kor Çekici","Demirci Örsü"],"elephant":["🧪","Fil Dişi Macunu","İksir Masası"],"neutralization":["🧪","Mide İlacı Sırrı (Titrasyon)","İksir Masası"],"golden-rain":["🧪","Altın Yağmuru","İksir Masası"],"aqua-regia":["🧪","Kral Suyu ve Altın Çözünmesi","İksir Masası"],"silver-mirror":["🧪","Gümüş Ayna Deneyi","İksir Masası"],"flame-test":["🧪","Bohr Yörünge Alev Işımaları","İksir Masası"],"alchemist-gold":["🧪","Bakır Paranın Altına Dönüşümü","İksir Masası"],"luminol-glow":["🧪","Luminol Kemilüminesans","İksir Masası"],"ph-rainbow":["🧪","Mor Lahana pH Gökkuşağı","İksir Masası"],"carbon-snake":["🧪","Firavun Yılanı & Karbon Sütunu","İksir Masası"],"hot-ice":["🧪","Sıcak Buz Kulesi","İksir Masası"]};
+    // Deney kimliği → [simge, başlık, kısa tanım] (deneyler.html?deney=…)
+    const EXP = {"guvenlik-muhru": ["🛡️", "Güvenlik Mührü", "Simyacı loncasının raflarındaki şişelerin etiketleri silinmiş! Doğru tehlike mührünü seç ve şişeye vurarak laboratuvarı güvenli hâle getir."], "alev-testi": ["🔥", "Fenerdeki Renkler (Alev Testi)", "Aqualf'ın feneri her tuzla farklı bir renge bürünüyor. Teli tuza batır, alevde tut ve elektronların ışık imzasını oku."], "kristal-harita": ["🧭", "Aqualf'ın Kristal Haritası", "İlk 20 elementin kristal küreleri duvarda asılı. Bir özellik seç; küreler büyüyüp küçülerek periyodik eğilimleri gözünün önüne sersin."], "iletkenlik-kristali": ["💡", "İletkenlik Kristali", "Aqualf'ın ışık kristali yalnızca elektrik akımı geçtiğinde parlar. Farklı maddeleri devreye bağla ve hangi bağların yük taşıyıcı serbest bıraktığını keşfet."], "bukulen-sivi": ["🌊", "Bükülen Şelale", "Aqualf kehribar asasını yün pelerinine sürtüp ince bir sıvı akışına yaklaştırıyor. Bazı sıvılar asaya doğru bükülüyor, bazıları dümdüz akıyor. Neden?"], "erime-egrisi": ["🧊", "Buz Sarayı ve Cam Kubbe", "Kristal bir katı ile amorf bir katıyı aynı ocakta ısıt. Biri belli bir sıcaklıkta birden erirken diğeri yavaş yavaş yumuşar."], "iksir-yarisi": ["🏁", "İksir Yarışı ve Dağdaki Kazan", "Dört sıvıya aynı anda gümüş bilyeler bırak; hangisi önce dibe ulaşır? Sonra kazanı dağın zirvesine taşı ve suyun kaç derecede kaynadığını ölç."], "nano-altin": ["✨", "Rengini Değiştiren Altın", "Altını küçülttükçe rengi değişiyor: sarıdan yakut kırmızısına, mora, maviye! Ayrıca altın nanoparçacıkları iki farklı yolla sentezle ve yeşil kimyanın farkını gör."], "tepkime-kazani": ["🫕", "Dört Kazanın Sırrı", "Dört tepkime türü, dört büyülü kazan. Tüpü kazana dök, değişimi gözlemle ve denklemin iki tarafındaki atomları say."], "mol-terazisi": ["⚖️", "Simyacının Terazisi", "Terazinin bir kefesine madde koy; diğer kefede kaç mol, kaç tanecik olduğu belirsin. Atomları saymanın tek yolu onları tartmaktır!"], "balon-iksiri": ["🎈", "Balon Şişiren İksir", "Balonun içindeki magnezyumu asit dolu şişeye düşür. Balon ne kadar şişecek? Hangisi önce bitecek: magnezyum mu, asit mi?"], "pistonlu-sise": ["🫧", "Pistonlu Sihirli Şişe", "Gaz tanecikleri cam silindirin içinde dans ediyor. Pistonu it, ocağı yak, tanecik ekle ve basıncın nasıl değiştiğini ölç."], "beyaz-halka": ["💨", "Beyaz Halkanın Yeri", "Uzun bir cam borunun iki ucuna iki farklı gaz emdirilmiş pamuk yerleştir. Gazlar nerede buluşacak? Hafif olan mı daha hızlı koşar?"], "doymak-bilmeyen-kazan": ["🧂", "Doymak Bilmeyen Kazan", "100 g suya kaşık kaşık tuz ekle. Kazan ne zaman doyacak? Isıtınca ne olur? Ya çok yavaş soğutursan?"], "mavi-iksir": ["🔵", "Mavi İksirin Tonu", "Bakır sülfat tozunu balon jojede çöz. Rengin koyuluğu derişimin aynasıdır. Molariteyi, kütlece yüzdeyi ve ppm'i ölç; sonra seyrelt."], "donmayan-iksir": ["❄️", "Donmayan İksir", "Kış gecesi kapı önündeki kovalar donuyor; tuzlu olan ise donmuyor! Çözünen türünü ve miktarını değiştir, donma ve kaynama noktalarını ölç."], "aglayan-heykel": ["🏛️", "Ağlayan Mermer Heykel", "Fabrika bacalarından yükselen dumanı ayarla, yılları hızlandır ve köy meydanındaki mermer simyacı heykelinin kaderini değiştir."], "sicak-soguk-muska": ["🌡️", "Sıcak ve Soğuk Muskalar", "Kalorimetre kabına 100 g su koy ve bir tuz çöz. Termometre yükselecek mi düşecek mi? Muskanın sırrı entalpi değişimindedir."], "tepe-asan-tanecikler": ["⛰️", "Tepe Aşan Tanecikler", "Kaptaki tanecikler durmadan çarpışıyor ama yalnızca bazıları ürüne dönüşüyor. Aktivasyon tepesini yükselt, alçalt, sıcaklığı değiştir ve etkin çarpışmaları say."], "fil-disi-macunu": ["🐘", "Fil Dişi Macunu", "Hidrojen peroksit kendi kendine çok yavaş ayrışır. Katalizör, sıcaklık, derişim ve yüzey alanıyla oyna; köpük kulesini en yükseğe çıkar!"], "dinamik-denge": ["⚖️", "Hiç Durmayan Dans", "Kapalı cam küreye renksiz N2O4 ya da kahverengi NO2 koy. Renk bir süre değişip sonra sabitleniyor; ama içerideki dans hiç durmuyor."], "renk-degistiren-kure": ["🔀", "Renk Değiştiren Küreler", "Dengedeki NO2–N2O4 küresini buzlu suya sok, kaynar suya daldır, sıkıştır, gaz ekle. Le Chatelier'in ilkesi her seferinde haklı çıkacak mı?"], "lambali-asit-avcisi": ["🍋", "Lambalı Asit Avcısı", "Eşit derişimli iki asit… biri lambayı parlatıyor, diğeri zor yakıyor. Asidin kuvveti miktarında değil, iyonlaşma derecesindedir."], "pembe-damla": ["💗", "Pembeye Dönen Damla", "Büretten damlayan NaOH, asidi damla damla nötrleştiriyor. Tek bir damla daha… ve çözelti kalıcı olarak pembeleşiyor! Eşdeğerlik noktasını yakala."], "beyaz-bulut": ["☁️", "Beyaz Bulut", "Az çözünen bir tuzun doymuş çözeltisine ortak iyon ekle; berrak sıvıda beliren bulut, dengenin katı yönüne kaydığını gösterir."], "mayali-enerji": ["🍃", "Mayalı Enerji (Yeşil Hidrojen)", "Şekerli atık suya bakteri kültürü ekle ve kavanozu kapat. Balon hidrojenle şişsin! Koşulları ayarla ve en verimli yeşil hidrojen reaktörünü kur."], "metal-duellosu": ["⚔️", "Metallerin Düellosu", "Bir metal şeridi başka bir metalin tuz çözeltisine daldır. Elektron vermeye daha istekli olan kazanır! Düello tablosunu doldur."], "limondan-fener": ["🔋", "Elektron Yolculuğu (Galvanik Pil)", "İki yarı hücre kur, tellerle bağla ve tuz köprüsünü yerleştir. Elektronlar anottan katoda koşarken ışık kristalini yak!"], "kaplanan-kalkan": ["🛡️", "Bakırla Kaplanan Kalkan", "Kalkanı güç kristalinin eksi ucuna bağla ve bakır sülfat banyosuna daldır; akım ve süreyle bakır kaplamayı ayarla. Sonra çivileri paslanmaya karşı koru."], "karbonun-yuzleri": ["💠", "Karbonun Dört Yüzü", "Elmas, grafit, fulleren ve grafen: hepsi saf karbon! Modelleri fareyle döndür. Sonra bilinmeyen bir organik maddeyi yakarak formülünü bul."], "rengini-kaybeden-iksir": ["⛓️", "Rengini Kaybeden İksir", "Kırmızı-kahve bromlu suyu hidrokarbon gazlarına damlat. Çift ve üçlü bağlar bromu yakalayıp rengi yok eder; tekli bağlar ise hiçbir şey yapmaz."], "turuncudan-yesile": ["🍷", "Turuncudan Yeşile", "Alkollere turuncu dikromat çözeltisi ekle ve ısıt. Primer ve sekonder alkoller yükseltgenirken renk zümrüt yeşiline döner; tersiyer alkol direnir."], "elma-kokulu-iksir": ["🍎", "Meyve Kokulu İksirler ve Gümüş Ayna", "Bir karboksilik asit ile bir alkolü birleştir, birkaç damla sülfürik asit ekleyip ısıt: atölye meyve kokularıyla dolsun! Sonra Tollens ayıracıyla aldehitleri ketonlardan ayır."], "yakitlarin-yarisi": ["☀️", "Yakıtların Yarışı", "1 gram yakıtı lambada yak ve üstteki 200 g suyu ısıt. Hangi yakıt suyu en çok ısıtıyor? Peki atmosfere ne kadar CO2 bırakıyor?"]};
 
-    SC.createScene($("#scene"), { mode: "library", autoReveal: true, startTime: 40 });
+    $("#topic-total").textContent = GRADES.reduce((n, g) => n + G[g].topics.length, 0);
+    $("#q-total").textContent = GRADES.reduce((n, g) => n + G[g].topics.reduce((m, t) => m + t.qs.length, 0), 0);
+
+    try { SC.createScene($("#scene"), { mode: "library", autoReveal: true, startTime: 40 }); } catch (e) {}
     SC.heroParallax($("#hero-content"));
     setTimeout(() => document.body.classList.add("entered"), 200);
 
-    // Quiz skorları (bu oturum için)
-    let scores = {}; try { scores = JSON.parse(store.get("sc-quiz") || "{}"); } catch (e) {}
-    const saveScores = () => store.set("sc-quiz", JSON.stringify(scores));
+    // Test sonuçları (bu oturum için): { "9-1": { c: doğru, n: toplam } }
+    let scores = {}; try { scores = JSON.parse(store.get("sc-test") || "{}"); } catch (e) {}
+    const saveScores = () => { try { store.set("sc-test", JSON.stringify(scores)); } catch (e) {} };
 
     let grade = 9, idx = 0, query = "";
+    const topicNo = (t) => t.id.split("-")[1];
 
     /* ---------- Sınıf sekmeleri ---------- */
     const tabs = $("#grade-tabs"), ink = $("#tab-ink");
     GRADES.forEach((g) => {
       const b = document.createElement("button");
       b.className = "grade-tab"; b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + g;
-      b.style.setProperty("--accent", ACCENT[g]);
-      b.dataset.magnetic = ".4";
-      b.innerHTML = "<b>" + String(g).padStart(2, "0") + "</b><span>Lise " + (g - 8) + " · " + CUR[g].topics.length + " ünite</span>";
-      b.addEventListener("click", () => { selectGrade(g, 0); Sound.chime(440 * Math.pow(2, (g - 9) / 4), .03, 1.4); });
+      b.style.setProperty("--accent", ACCENT[g]); b.dataset.magnetic = ".4";
+      b.innerHTML = "<b>" + String(g).padStart(2, "0") + "</b><span>" + g + ". sınıf · " + G[g].topics.length + " konu</span>";
+      b.addEventListener("click", () => { selectGrade(g, 0, true); Sound.chime(440 * Math.pow(2, (g - 9) / 4), .03, 1.4); });
       tabs.appendChild(b);
     });
     function moveInk() {
@@ -275,156 +310,178 @@
     }
     addEventListener("resize", moveInk);
 
-    /* ---------- Ünite listesi ---------- */
+    /* ---------- Konu listesi ---------- */
     const list = $("#unit-list");
+    function badge(t) {
+      const s = scores[t.id]; if (!s) return "";
+      return '<span class="badge' + (s.c === s.n ? " full" : "") + '" title="Test sonucun">' + s.c + "/" + s.n + "</span>";
+    }
+    function item(g, i, t, showGrade) {
+      const cur = g === grade && i === idx;
+      return '<li><button type="button" class="unit-btn" data-g="' + g + '" data-i="' + i + '" style="--accent:' + ACCENT[g] + '" data-nosound' + (cur ? ' aria-current="true"' : "") + ">" +
+        '<span class="no">' + g + "." + topicNo(t) + "</span><span>" + (showGrade ? '<span class="gr">' + g + ". SINIF</span>" : "") +
+        '<span class="tt">' + t.icon + " " + chem(t.title) + '</span><span class="st">' + chem(t.sub) + "</span></span>" + badge(t) + "</button></li>";
+    }
     function renderList() {
-      list.innerHTML = "";
-      let items;
+      let html = "", n = 0;
       if (query) {
         const q = trLower(query);
-        items = [];
-        GRADES.forEach((g) => CUR[g].topics.forEach((t, i) => {
-          const hay = trLower([t.title, t.subtitle, t.scenarioTitle, ...(t.subtopics || [])].join(" "));
-          if (hay.includes(q)) items.push({ g, i, t });
+        GRADES.forEach((g) => G[g].topics.forEach((t, i) => {
+          const hay = trLower([t.title, t.sub, t.story && t.story.t, ...(t.subtopics || []), ...(t.points || [])].join(" "));
+          if (hay.includes(q)) { html += item(g, i, t, true); n++; }
         }));
         $("#list-title").textContent = "Arama sonuçları";
+        if (!n) html = '<li class="empty">“' + esc(query) + '” için konu bulunamadı. Başka bir kelime dene.</li>';
       } else {
-        items = CUR[grade].topics.map((t, i) => ({ g: grade, i, t }));
-        $("#list-title").textContent = CUR[grade].shortLabel;
-      }
-      $("#list-count").textContent = items.length + " ünite";
-      if (!items.length) { list.innerHTML = '<li class="empty">“' + esc(query) + '” için ünite bulunamadı. Başka bir kelime dene.</li>'; return; }
-      items.forEach(({ g, i, t }) => {
-        const li = document.createElement("li");
-        const b = document.createElement("button");
-        b.type = "button"; b.className = "unit-btn"; b.style.setProperty("--accent", ACCENT[g]);
-        b.dataset.spot = ""; b.dataset.nosound = "";
-        if (g === grade && i === idx) b.setAttribute("aria-current", "true");
-        const done = scores[t.id] ? " ✓" : "";
-        b.innerHTML = '<span class="no">' + String(t.unitNumber || i + 1).padStart(2, "0") + '</span><span>' +
-          (query ? '<span class="gr">' + g + '. SINIF</span>' : "") +
-          '<span class="tt">' + t.icon + " " + chem(t.title.replace(/^\d+\.\s*Ünite:\s*/, "")) + done + '</span><span class="st">' + chem(t.subtitle) + "</span></span>";
-        b.addEventListener("click", () => {
-          selectGrade(g, i, true);
-          if (innerWidth <= 1024) $("#ders").scrollIntoView({ behavior: "smooth", block: "start" });
+        const gd = G[grade];
+        gd.themes.forEach((th) => {
+          const items = gd.topics.map((t, i) => [t, i]).filter(([t]) => t.theme === th.id);
+          if (!items.length) return;
+          html += '<li class="theme-h" aria-hidden="true"><span>' + esc(th.name) + "</span><span>" + (th.hours ? th.hours + " ders saati" : "") + "</span></li>";
+          items.forEach(([t, i]) => { html += item(grade, i, t, false); n++; });
         });
-        li.appendChild(b); list.appendChild(li);
-      });
+        $("#list-title").textContent = gd.label + " konuları";
+      }
+      $("#list-count").textContent = n + " konu";
+      list.innerHTML = html;
     }
+    list.addEventListener("click", (e) => {
+      const b = e.target.closest(".unit-btn"); if (!b) return;
+      selectGrade(+b.dataset.g, +b.dataset.i, true);
+      $("#ders").scrollIntoView({ behavior: SC.reduced ? "auto" : "smooth", block: "start" });
+    });
 
     /* ---------- Ders ---------- */
     const lesson = $("#ders");
     function renderLesson() {
-      const g = CUR[grade], t = g.topics[idx], acc = ACCENT[grade];
+      const gd = G[grade], t = gd.topics[idx], acc = ACCENT[grade];
+      const th = gd.themes.find((x) => x.id === t.theme) || { name: "" };
       lesson.style.setProperty("--accent", acc);
-      const total = g.topics.length;
-      const prev = idx > 0 ? g.topics[idx - 1] : null, next = idx < total - 1 ? g.topics[idx + 1] : null;
-      const strip = (s) => s.replace(/^\d+\.\s*Ünite:\s*/, "");
-      const exp = t.relatedExperimentId && EXP[t.relatedExperimentId];
+      const total = gd.topics.length;
+      const prev = idx > 0 ? gd.topics[idx - 1] : null, next = idx < total - 1 ? gd.topics[idx + 1] : null;
+      const exp = t.exp && EXP[t.exp];
 
-      let html = '<header class="l-head"><div class="l-icon" aria-hidden="true">' + t.icon + '</div><div>' +
-        '<span class="label gold">Lise ' + (grade - 8) + " · " + grade + ". Sınıf — Ünite " + (idx + 1) + " / " + total + "</span>" +
-        "<h2>" + chem(strip(t.title)) + "</h2><p>" + chem(t.subtitle) + "</p></div></header>";
+      let html = '<header class="l-head"><div class="l-icon" aria-hidden="true">' + t.icon + "</div><div>" +
+        '<span class="label gold">' + gd.label + " · " + esc(th.name) + " · Konu " + topicNo(t) + " / " + total + "</span>" +
+        "<h2>" + chem(t.title) + "</h2><p>" + chem(t.sub) + '</p><nav class="l-jump" aria-label="Bu sayfada">' +
+        '<a href="#k-oz">Özet</a><a href="#k-formul">Formüller</a>' + (exp ? '<a href="#k-deney">Deney</a>' : "") + '<a href="#test">Test · ' + t.qs.length + " soru</a></nav></div></header>";
 
-      if (t.subtopics?.length) html += '<section class="l-sec"><span class="label">Alt konu başlıkları</span><ol class="subs">' + t.subtopics.map((s) => "<li><span>" + chem(s) + "</span></li>").join("") + "</ol></section>";
-
-      if (t.scenario) html += '<section class="l-sec"><span class="label">Senaryo</span><div class="scenario parchment reveal"><span class="label">🎬 Hobbit köyünden bir sahne</span><h3>' + chem(t.scenarioTitle) + "</h3><p>" + chem(t.scenario) + "</p></div></section>";
-
-      if (t.potionFormulas?.length) html += '<section class="l-sec"><span class="label">İksir formülleri</span><div class="potions">' + t.potionFormulas.map((pf, k) => {
-        const v = VIAL[pf.vialColor] || VIAL.amber;
+      if (t.subtopics && t.subtopics.length) html += '<section class="l-sec"><span class="label">Alt konu başlıkları</span><ol class="subs">' + t.subtopics.map((s) => "<li><span>" + chem(s) + "</span></li>").join("") + "</ol></section>";
+      if (t.story) html += '<section class="l-sec"><span class="label">Hikâye</span><div class="scenario parchment reveal"><span class="label">🎬 Aqualf anlatıyor</span><h3>' + chem(t.story.t) + "</h3><p>" + chem(t.story.p) + "</p></div></section>";
+      if (t.points && t.points.length) html += '<section class="l-sec" id="k-oz"><span class="label">Konu özeti</span><ul class="takeaways">' + t.points.map((s) => '<li class="reveal"><span>' + chem(s) + "</span></li>").join("") + "</ul></section>";
+      if (t.formulas && t.formulas.length) html += '<section class="l-sec" id="k-formul"><span class="label">Formüller ve iksir tarifleri</span><div class="potions">' + t.formulas.map((f, k) => {
+        const v = VIAL[f.c] || VIAL.amber;
         return '<div class="potion reveal" data-tilt=".8" style="--v:' + v + '"><div class="potion-inner">' + vialSVG(k) +
-          "<div><h4>" + chem(pf.name) + '</h4><div class="formula">' + chem(pf.equation) + "</div><p>" + chem(pf.note) + "</p></div></div></div>";
+          "<div><h4>" + chem(f.n) + '</h4><div class="formula">' + chem(f.eq) + "</div>" + (f.note ? "<p>" + chem(f.note) + "</p>" : "") + "</div></div></div>";
       }).join("") + "</div></section>";
+      if (t.tip) html += '<section class="l-sec"><div class="tip reveal"><img src="Aqualf1.jpg" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><div><span class="label">💧 Sorcerer Aqualf’ın sınav şifresi</span><p>' + chem(t.tip) + "</p></div></div></section>";
+      if (exp) html += '<section class="l-sec" id="k-deney"><span class="label">Bu konunun deneyi</span><a class="exp-link" href="deneyler.html?deney=' + encodeURIComponent(t.exp) + '" data-cursor="DENE"><span class="ic" aria-hidden="true">' + exp[0] + '</span><span><span class="label">Simya Atölyesi · etkileşimli deney</span><b>' + chem(exp[1]) + "</b><small>" + chem(exp[2]) + '</small></span><span class="go" aria-hidden="true">→</span></a></section>';
 
-      if (t.keyTakeaways?.length) html += '<section class="l-sec"><span class="label">Önemli çıkarımlar</span><ul class="takeaways">' + t.keyTakeaways.map((s) => '<li class="reveal"><span>' + chem(s) + "</span></li>").join("") + "</ul></section>";
+      html += '<section class="l-sec" id="test"><span class="label">Konu testi</span><div class="test-head"><div><span class="label gold">Aqualf soruyor</span><h3>' + chem(t.title) + " · " + t.qs.length + ' soru</h3></div>' +
+        '<div class="meter" aria-live="polite"><div class="row"><span id="m-txt">0 / ' + t.qs.length + ' cevaplandı</span><span id="m-sc"></span></div><div class="bar"><i class="ok" id="m-ok" style="width:0"></i><i class="no" id="m-no" style="width:0"></i></div></div></div>' +
+        '<div class="qs" id="qs"></div><div class="result" id="result" aria-live="polite"></div></section>';
 
-      if (t.aqualfTip) html += '<section class="l-sec"><div class="tip reveal"><img src="Aqualf1.jpg" alt="" onerror="this.onerror=null;this.src=\'/assets/aistudio/Aqualf1_88586255.jpg\';"><div><span class="label">💧 Sorcerer Aqualf’ın altın sınav şifresi</span><p>' + chem(t.aqualfTip) + "</p></div></div></section>";
-
-      if (t.quizQ && t.quizOptions?.length) {
-        html += '<section class="l-sec"><span class="label">Mini quiz</span><div class="quiz reveal" id="quiz"><span class="label gold">Aqualf soruyor</span><h3>' + chem(t.quizQ) + '</h3><div class="opts" role="group" aria-label="Cevap seçenekleri">' +
-          t.quizOptions.map((o, k) => '<button type="button" class="opt" data-k="' + k + '"><span class="k">' + "ABCDE"[k] + "</span><span>" + chem(o) + '</span><span class="mark" aria-hidden="true"></span></button>').join("") +
-          '</div><div class="quiz-foot"><span class="quiz-msg" id="quiz-msg" aria-live="polite"></span><span class="score" id="score"></span></div></div></section>';
-      }
-
-      if (exp) html += '<section class="l-sec"><span class="label">Bu konunun deneyi</span><a class="exp-link" href="deneyler.html?deney=' + encodeURIComponent(t.relatedExperimentId) + '" data-spot data-cursor="DENE"><span class="ic" aria-hidden="true">' + exp[0] + '</span><span><span class="label">' + exp[2] + "</span><b>" + esc(exp[1]) + '</b></span><span class="go" aria-hidden="true">→</span></a></section>';
-
-      html += '<nav class="pager" aria-label="Üniteler arası gezinme">' +
-        '<button type="button" id="prev"' + (prev ? "" : " disabled") + '><span class="label">← Önceki ünite</span><b>' + (prev ? chem(strip(prev.title)) : "—") + "</b></button>" +
-        '<button type="button" id="next"' + (next ? "" : " disabled") + '><span class="label">Sonraki ünite →</span><b>' + (next ? chem(strip(next.title)) : "—") + "</b></button></nav>";
+      html += '<nav class="pager" aria-label="Konular arası gezinme">' +
+        '<button type="button" id="prev"' + (prev ? "" : " disabled") + '><span class="label">← Önceki konu</span><b>' + (prev ? chem(prev.title) : "—") + "</b></button>" +
+        '<button type="button" id="next"' + (next ? "" : " disabled") + '><span class="label">Sonraki konu →</span><b>' + (next ? chem(next.title) : "—") + "</b></button></nav>";
 
       lesson.innerHTML = html;
       lesson.classList.remove("swap"); void lesson.offsetWidth; lesson.classList.add("swap");
       SC.observeReveal(lesson);
-      bindQuiz(t);
+      buildTest(t);
       $("#prev").addEventListener("click", () => { if (prev) { selectGrade(grade, idx - 1, true); lesson.scrollIntoView({ behavior: "smooth" }); } });
       $("#next").addEventListener("click", () => { if (next) { selectGrade(grade, idx + 1, true); lesson.scrollIntoView({ behavior: "smooth" }); } });
-      document.title = strip(t.title) + " · " + grade + ". Sınıf Kimya | Sorchemist";
+      $$(".l-jump a", lesson).forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); const el = $(a.getAttribute("href")); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }));
+      document.title = t.title + " · " + grade + ". Sınıf Kimya Konu Anlatımı ve Test | Sorchemist";
     }
 
     function vialSVG(k) {
       const shapes = [
-        // Erlenmayer
         '<path class="glow" d="M14 92 L56 92 L46 60 L24 60 Z"/><path class="liquid" d="M12 94 L58 94 L46 62 L24 62 Z"/><path class="glass" d="M27 8 H43 V40 L62 96 H8 L27 40 Z"/><rect class="shine" x="30" y="44" width="3" height="40" rx="1.5" transform="rotate(-18 31 64)"/>',
-        // Yuvarlak balon
         '<circle class="glow" cx="35" cy="70" r="20"/><path class="liquid" d="M13 72 A22 22 0 0 0 57 72 Z"/><path class="glass" d="M29 8 H41 V46 A26 26 0 1 1 29 46 Z"/><rect class="shine" x="20" y="56" width="3" height="18" rx="1.5"/>',
-        // Tüp
         '<rect class="glow" x="24" y="50" width="22" height="44" rx="11"/><path class="liquid" d="M24 52 H46 V84 A11 11 0 0 1 24 84 Z"/><path class="glass" d="M22 6 H48 M24 6 V84 A11 11 0 0 0 46 84 V6"/><rect class="shine" x="28" y="20" width="3" height="56" rx="1.5"/>'
       ];
       return '<svg class="vial" viewBox="0 0 70 100" aria-hidden="true">' + shapes[k % 3] + '<circle class="bub" cx="32" cy="88" r="2"/><circle class="bub" cx="38" cy="90" r="1.5"/><circle class="bub" cx="35" cy="86" r="1.2"/></svg>';
     }
 
-    function bindQuiz(t) {
-      const box = $("#quiz"); if (!box) return;
-      const msg = $("#quiz-msg"), sc = $("#score");
-      const updateScore = () => { const n = Object.keys(scores).length; sc.textContent = n ? "Bu oturumda çözülen: " + n + " / 29" : ""; };
-      updateScore();
-      box.addEventListener("click", (e) => {
+    /* ---------- Test motoru ---------- */
+    const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+    const keepOrder = (q) => /(^|\n)I\./.test(q.q) || q.o.some((x) => /^(Yalnız\s)?I{1,3}(\s|,|$)/.test(x) || /hepsi|hiçbiri|tümü/i.test(x));
+    function buildTest(t) {
+      const box = $("#qs"), res = $("#result"), N = t.qs.length;
+      let answered = 0, correct = 0;
+      const order = t.qs.map((q) => { const ix = q.o.map((_, i) => i); return keepOrder(q) ? ix : shuffle(ix); });
+      box.innerHTML = t.qs.map((q, n) =>
+        '<div class="q reveal" data-n="' + n + '"><div class="q-top"><span class="q-no">SORU ' + String(n + 1).padStart(2, "0") + " / " + String(N).padStart(2, "0") + '</span><span class="q-res"></span></div>' +
+        "<h4>" + chem(q.q) + '</h4><div class="opts" role="group" aria-label="Soru ' + (n + 1) + ' seçenekleri">' +
+        order[n].map((oi, k) => '<button type="button" class="opt" data-oi="' + oi + '"><span class="k">' + "ABCDE"[k] + "</span><span>" + chem(q.o[oi]) + "</span></button>").join("") +
+        '</div><div class="expl"><b>Çözüm:</b> ' + chem(q.e || "") + "</div></div>").join("");
+      SC.observeReveal(box);
+      const upd = () => {
+        $("#m-txt").textContent = answered + " / " + N + " cevaplandı";
+        $("#m-sc").textContent = answered ? "✓ " + correct + "  ✗ " + (answered - correct) : "";
+        $("#m-ok").style.width = (correct / N * 100) + "%"; $("#m-no").style.width = ((answered - correct) / N * 100) + "%";
+      };
+      upd();
+      box.onclick = (e) => {
         const b = e.target.closest(".opt"); if (!b || b.disabled) return;
-        const k = Number(b.dataset.k);
-        if (k === t.quizAnswer) {
-          b.classList.add("correct");
-          $$(".opt", box).forEach((x) => (x.disabled = true));
-          msg.className = "quiz-msg ok"; msg.textContent = "Harika! Aqualf seninle gurur duyuyor. ✦";
-          Sound.success();
-          scores[t.id] = 1; saveScores(); updateScore(); renderList();
-        } else {
-          b.classList.add("wrong"); b.disabled = true;
-          msg.className = "quiz-msg no"; msg.textContent = "Bu değil, bir daha dene. İpucu: yukarıdaki çıkarımlara göz at.";
-          Sound.fail();
-        }
-      });
+        const qel = b.closest(".q"), n = +qel.dataset.n, q = t.qs[n], oi = +b.dataset.oi;
+        const ok = oi === q.a;
+        $$(".opt", qel).forEach((x) => { x.disabled = true; if (+x.dataset.oi === q.a) x.classList.add("correct"); });
+        if (!ok) b.classList.add("wrong");
+        qel.classList.add("answered", ok ? "done-ok" : "done-no");
+        const r = $(".q-res", qel); r.className = "q-res " + (ok ? "ok" : "no"); r.textContent = ok ? "✓ Doğru" : "✗ Yanlış";
+        answered++; if (ok) correct++;
+        ok ? Sound.success() : Sound.fail();
+        upd();
+        if (answered === N) finish();
+      };
+      function finish() {
+        const prevBest = scores[t.id];
+        if (!prevBest || correct >= prevBest.c) { scores[t.id] = { c: correct, n: N }; saveScores(); renderList(); }
+        const pct = correct / N;
+        const msg = pct === 1 ? "Kusursuz! Aqualf asasını senin için kaldırıyor. Bu konunun büyüsünü tamamen çözdün." :
+          pct >= .6 ? "Çok iyi! Yanlış yaptığın soruların çözümlerine bir göz at, sonra testi yeniden dene." :
+          "Henüz tam olmadı. Konu özetini ve formülleri tekrar oku, sonra testi yeniden çöz. Her deneme seni güçlendirir.";
+        res.innerHTML = '<span class="label gold">Test sonucu</span><div class="big">' + correct + " / " + N + "</div><p>" + msg + '</p><div class="acts"><button type="button" class="btn btn-sm" id="retry">↺ Testi yeniden çöz</button>' +
+          (EXP[t.exp] ? '<a class="btn btn-gold btn-sm" href="deneyler.html?deney=' + encodeURIComponent(t.exp) + '">Deneyi yap <span class="arr">→</span></a>' : "") + "</div>";
+        res.classList.add("show");
+        $("#retry").addEventListener("click", () => { res.classList.remove("show"); buildTest(t); $("#test").scrollIntoView({ behavior: "smooth", block: "start" }); });
+      }
     }
 
     /* ---------- Durum ve URL ---------- */
     function selectGrade(g, i = 0, push) {
-      const changedGrade = g !== grade;
-      grade = g; idx = Math.max(0, Math.min(i, CUR[g].topics.length - 1));
+      const changed = g !== grade;
+      grade = g; idx = Math.max(0, Math.min(i, G[g].topics.length - 1));
       $$(".grade-tab").forEach((b) => b.setAttribute("aria-selected", String(b.id === "tab-" + g)));
       moveInk();
+      $("#program").innerHTML = "Öğretim programı: <b>" + esc(G[g].program) + "</b>";
       const w = $("#grade-welcome");
-      if (changedGrade || !w.textContent) { w.style.opacity = 0; setTimeout(() => { w.textContent = "“" + CUR[g].welcome + "”"; w.style.opacity = ""; }, w.textContent ? 250 : 0); }
+      if (changed || !w.textContent) { w.style.opacity = 0; setTimeout(() => { w.textContent = "“" + G[g].welcome + "”"; w.style.opacity = ""; }, w.textContent ? 250 : 0); }
       renderList(); renderLesson();
       const url = new URL(location.href);
-      url.searchParams.set("sinif", g); url.searchParams.set("unite", CUR[g].topics[idx].id);
-      if (query) url.searchParams.set("q", query); else url.searchParams.delete("q");
+      url.search = ""; url.hash = "";
+      url.searchParams.set("sinif", g); url.searchParams.set("unite", G[g].topics[idx].id);
+      if (query) url.searchParams.set("q", query);
       history[push ? "pushState" : "replaceState"]({ g, i: idx }, "", url);
     }
     addEventListener("popstate", (e) => { if (e.state) selectGrade(e.state.g, e.state.i); });
 
     let searchT;
-    $("#topic-search").addEventListener("input", (e) => {
-      clearTimeout(searchT);
-      searchT = setTimeout(() => { query = e.target.value.trim(); renderList(); }, 120);
-    });
+    $("#topic-search").addEventListener("input", (e) => { clearTimeout(searchT); searchT = setTimeout(() => { query = e.target.value.trim(); renderList(); }, 120); });
 
-    // Başlangıç: ?sinif=, ?unite=, ?q=
+    // Başlangıç: ?sinif=, ?unite=, ?q=, ?test=1 veya #test
     const p = new URLSearchParams(location.search);
     const pg = parseInt(p.get("sinif"), 10), pu = p.get("unite"), pq = p.get("q");
     let g0 = GRADES.includes(pg) ? pg : 9, i0 = 0;
-    if (pu) GRADES.forEach((g) => CUR[g].topics.forEach((t, i) => { if (t.id === pu) { g0 = g; i0 = i; } }));
+    if (pu) GRADES.forEach((g) => G[g].topics.forEach((t, i) => { if (t.id === pu) { g0 = g; i0 = i; } }));
     if (pq) { query = pq; $("#topic-search").value = pq; }
+    const wantTest = p.get("test") === "1" || location.hash === "#test";
     grade = null;
     selectGrade(g0, i0);
+    if (wantTest) setTimeout(() => { const el = $("#test"); if (el) el.scrollIntoView({ behavior: "auto", block: "start" }); }, 500);
+    else if (pu) setTimeout(() => lesson.scrollIntoView({ behavior: "auto", block: "start" }), 400);
     setTimeout(() => ($("#grade-welcome").style.transition = "opacity .25s"), 2600);
     requestAnimationFrame(moveInk);
     if (document.fonts) document.fonts.ready.then(moveInk);
